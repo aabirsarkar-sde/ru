@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────────────────────────────────
+   Rishihood University brand tokens (Brand Guidelines 2023, ch. 3–5)
+   Primary: Rishihood Red #B20E38 · Narangi #CC5C2F
+   Secondary: sand/peach/cream, plum/wine, navy/blue, deep grey
+   Type: Adobe Garamond (→ EB Garamond on the web) + Montserrat
+   Shape: the "Rishihood curve" — a box with one large curved corner
+   ────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --color-red: #b20e38;
+  --color-red-deep: #8a0a2b;
+  --color-narangi: #cc5c2f;
+  --color-narangi-bright: #df5c35;
+  --color-narangi-ink: #a94a1d; /* narangi for small text / behind white text (5.4:1) */
+  --color-sand: #f2d5a0;
+  --color-peach: #ffe5cd;
+  --color-cream: #ffedd2;
+  --color-paper: #fff8ee;
+  --color-plum: #561842;
+  --color-wine: #81204d;
+  --color-navy: #062e56;
+  --color-blue: #104477;
+  --color-ink: #333a3d;
+  --color-ink-soft: #5b6366;
+  --color-ink-mute: #666d70; /* AA on paper/cream (was #80878a) */
+  --color-line: #e8dcc8;
+  --color-line-strong: #d6c4a6;
+  --color-ok: #2e7d4f;
+  --color-warn: #b7791f;
+
+  /* chart series — validated for CVD + contrast on paper (dataviz skill) */
+  --color-series-1: #2f6db0;
+  --color-series-2: #d2643a;
+  --color-series-3: #a1336a;
+
+  --font-serif: var(--font-garamond), "Adobe Garamond Pro", Garamond, Georgia, serif;
+  --font-sans: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
+
+  --radius-curve: 2.25rem;
+  --radius-curve-sm: 1.25rem;
+
+  --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade: fade 0.3s ease both;
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Per-program accent; overridden by [data-accent]. */
+  /* --accent carries text and sits behind button labels: must meet WCAG AA.
+     --accent-fill is for large decorative surfaces and may use the exact
+     brand swatch. Narangi #CC5C2F is 3.9:1 on paper, so its text/button
+     shade is a deeper narangi. */
+  --accent: var(--color-red);
+  --accent-fill: var(--color-red);
+  --accent-soft: #fbe4e8;
+}
+[data-accent="narangi"] { --accent: #b8501f; --accent-fill: #cc5c2f; --accent-soft: #fbe6da; }
+[data-accent="wine"] { --accent: #81204d; --accent-fill: #81204d; --accent-soft: #f6e3ec; }
+[data-accent="navy"] { --accent: #104477; --accent-fill: #104477; --accent-soft: #e2ecf6; }
+[data-accent="red"] { --accent: #b20e38; --accent-fill: #b20e38; --accent-soft: #fbe4e8; }
+[data-accent="plum"] { --accent: #561842; --accent-fill: #561842; --accent-soft: #f1e2ec; }
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+/* Candidate-controlled font size (PRD §6.3 accessibility). */
+html[data-fontscale="lg"] { font-size: 112.5%; }
+html[data-fontscale="xl"] { font-size: 125%; }
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-feature-settings: "kern";
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Garamond is always tracked slightly tight (guidelines: −20). */
+.font-serif { letter-spacing: -0.02em; }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* The Rishihood curve: one large rounded corner. */
+.curve-br { border-radius: 0 0 var(--radius-curve) 0; }
+.curve-tr { border-radius: 0 var(--radius-curve) 0 0; }
+.curve-bl { border-radius: 0 0 0 var(--radius-curve); }
+.curve-tl { border-radius: var(--radius-curve) 0 0 0; }
+.curve-br-sm { border-radius: 6px 6px var(--radius-curve-sm) 6px; }
+.curve-tr-sm { border-radius: 6px var(--radius-curve-sm) 6px 6px; }
+
+/* Indic-inspired lattice, colour-on-colour and subtle, per the pattern guidance. */
+.pattern-lattice {
+  background-image:
+    radial-gradient(circle at 0 0, transparent 14px, rgb(255 255 255 / 0.07) 15px, rgb(255 255 255 / 0.07) 16px, transparent 17px),
+    radial-gradient(circle at 32px 32px, transparent 14px, rgb(255 255 255 / 0.07) 15px, rgb(255 255 255 / 0.07) 16px, transparent 17px),
+    radial-gradient(circle at 32px 0, transparent 14px, rgb(0 0 0 / 0.06) 15px, rgb(0 0 0 / 0.06) 16px, transparent 17px),
+    radial-gradient(circle at 0 32px, transparent 14px, rgb(0 0 0 / 0.06) 15px, rgb(0 0 0 / 0.06) 16px, transparent 17px);
+  background-size: 32px 32px;
+}
+
+.prose-ru p + p { margin-top: 0.9em; }
+.prose-ru strong { font-weight: 600; color: var(--color-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* Canvas surfaces must not scroll or zoom the page while drawing. */
+.touch-none-strict { touch-action: none; -webkit-user-select: none; user-select: none; }

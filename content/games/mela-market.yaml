@@ -1,0 +1,206 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MELA MARKET — BBA Entrepreneurship, Section B3
+# Every number that shapes the game lives here. Faculty can tune freely; run
+# `npm test` afterwards — the fairness tests will still hold, and
+# `npm run mela:report` prints what each stall spot is worth under the model.
+#
+# Demand (per day, for your stall):
+#   visitors = base_footfall[day] × location.footfall_share × event multipliers
+#   demand   = visitors × product.interest × location.affinity[product]
+#              × price factor × (1 + promotion.lift) × competitor factor × noise
+#   price factor      = clamp(1 + elasticity × (1 − price / ref_price), 0, demand_cap)
+#   competitor factor = clamp((competitor price / your price) ^ cross_elasticity, min, max)
+#   noise             = 1 ± noise, identical for every candidate in a window
+# ─────────────────────────────────────────────────────────────────────────────
+title: Mela Market
+capital: 100000
+days: 4
+base_footfall: [6000, 7000, 6500, 8500]
+noise: 0.08
+demand_cap: 1.8
+salvage_rate: 0.5        # unsold non-perishable stock is valued at 50% of cost at the end
+switch_limit: 1          # candidates may switch product once
+hours: { open: 11, close: 22 }
+competition: { cross_elasticity: 1.2, min: 0.5, max: 1.4 }
+
+locations:
+  - id: entrance
+    name: Near the entrance
+    blurb: Everyone walks past. Busy, but people are still deciding where to spend.
+    footfall_share: 0.34
+    reserve: 8000
+    affinity: { chai: 1.0, accessories: 1.25, decor: 1.0 }
+    map: { x: 50, y: 86 }
+  - id: food_court
+    name: Next to the food court
+    blurb: Hungry, relaxed crowds who linger. Great for anything you eat or drink.
+    footfall_share: 0.28
+    reserve: 6000
+    affinity: { chai: 1.45, accessories: 0.8, decor: 0.85 }
+    map: { x: 22, y: 46 }
+  - id: rides
+    name: By the rides
+    blurb: Families and teenagers in queues, phones out, waiting their turn.
+    footfall_share: 0.24
+    reserve: 5000
+    affinity: { chai: 1.1, accessories: 1.15, decor: 0.7 }
+    map: { x: 76, y: 40 }
+  - id: back_corner
+    name: The back corner
+    blurb: Quiet. Fewer people, but the ones who come are browsing, not rushing.
+    footfall_share: 0.14
+    reserve: 1500
+    affinity: { chai: 0.8, accessories: 0.9, decor: 1.3 }
+    map: { x: 84, y: 12 }
+
+products:
+  - id: chai
+    name: Chai & snacks
+    blurb: Cutting chai and samosas. Cheap to make, sells fast — but it spoils by night.
+    perishable: true
+    unit_cost: 18
+    ref_price: 40
+    min_price: 10
+    max_price: 120
+    interest: 0.26
+    elasticity: 1.6
+  - id: accessories
+    name: Phone accessories
+    blurb: Covers, cables, pop-sockets. Keeps for ever; buyers compare prices.
+    perishable: false
+    unit_cost: 90
+    ref_price: 199
+    min_price: 40
+    max_price: 800
+    interest: 0.04
+    elasticity: 1.4
+  - id: decor
+    name: Handmade decor
+    blurb: Diyas, torans, block-printed cushion covers. Fewer buyers, better margins.
+    perishable: false
+    unit_cost: 160
+    ref_price: 399
+    min_price: 100
+    max_price: 1500
+    interest: 0.028
+    elasticity: 1.1
+
+promotions:
+  - { id: none,        name: No promotion,         cost: 0,    lift: 0,    blurb: Let the stall speak for itself. }
+  - { id: banner,      name: Banner,               cost: 1200, lift: 0.10, blurb: A printed flex banner above your stall. }
+  - { id: loudspeaker, name: Loudspeaker shout-out, cost: 2000, lift: 0.18, blurb: The mela announcer mentions you every hour. }
+  - { id: reel,        name: Influencer reel,      cost: 6500, lift: 0.40, blurb: A local creator posts a reel from your stall. }
+
+# Scripted competitors — identical for every candidate.
+bots:
+  - id: bot_a
+    name: Sharma Snacks
+    product: chai
+    stall_bid: { location: entrance, amount: 16000 }
+    price_ratio: 1.0
+  - id: bot_b
+    name: GadgetGali
+    product: accessories
+    stall_bid: { location: food_court, amount: 14000 }
+    price_ratio: 0.95
+  - id: bot_c
+    name: Kala Kosh
+    product: decor
+    stall_bid: { location: rides, amount: 7000 }
+    price_ratio: 1.05
+
+# Revealed at the start of each day. Multiple events per day are combined.
+events:
+  - day: 1
+    id: opening
+    tone: neutral
+    title: Opening day
+    body: The gates open at 11. Word hasn't spread yet, so crowds build slowly through the afternoon.
+    footfall_mult: 0.9
+  - day: 2
+    id: rain
+    tone: bad
+    title: Rain forecast for the evening
+    body: >-
+      The weather app shows heavy showers after 6 pm. Fewer people will come, and
+      those who do will huddle under shelters — hot drinks tend to do well, and
+      nobody wants to carry a cushion cover home in the rain.
+    footfall_mult: 0.72
+    product_mult: { chai: 1.3, accessories: 0.9, decor: 0.75 }
+  - day: 3
+    id: price_cut
+    tone: bad
+    title: The stall next door cuts prices by 20%
+    body: >-
+      Your neighbour, selling the same thing as you, has put up a hand-painted
+      sign: "20% OFF — TODAY ONLY". Customers are comparing.
+    competitor_price_mult: 0.8
+  - day: 4
+    id: cricket_star
+    tone: good
+    title: A local cricket star is visiting the rides section
+    body: >-
+      The Ranji Trophy hero from your city will sign autographs near the giant
+      wheel from 5 pm. Expect the biggest crowd of the mela — especially around
+      the rides.
+    footfall_mult: 1.12
+    location_mult: { rides: 1.8 }
+  - day: 4
+    id: supplier_offer
+    tone: offer
+    title: Your supplier offers 15% off if you buy double stock
+    body: >-
+      "Last day special, for you only." Order at least twice what you ordered
+      last time and every unit is 15% cheaper.
+    supplier_offer: { discount: 0.15, min_multiple: 2, min_units: 100 }
+
+mid_auction:
+  day: 3
+  id: water_rights
+  title: Exclusive rights to sell water near the stage
+  body: >-
+    The organisers are auctioning the only licence to sell bottled water near the
+    main stage for the last two days. Their estimate: about ₹4,500 of profit a
+    day, handled by their own staff. Sealed bids; highest bid wins and pays what
+    they bid.
+  value_per_day: 4500
+  active_days: [3, 4]
+  bot_bids: [5500, 7200]
+
+scoring:
+  outcome_weight: 0.5      # final profit percentile within the test window
+  decision_weight: 0.5     # auto-computed decision quality
+  cohort_size: 300         # demo only: size of the simulated comparison cohort
+  bid_tolerance: 0.05      # bids up to 5% above expected value still count as rational
+  waste_tolerance: 0.2     # more than 20% of perishables thrown away = overbuying
+  adjust_threshold: 0.1    # a ≥10% change in price or stock counts as "adjusting"
+  checks:
+    - { id: stall_bid, weight: 2, label: "Stall bid within its expected value", explain: "Did the stall bid exceed what the spot was worth on forecast?" }
+    - { id: rain_adjust, weight: 1, label: "Adjusted plan for the rain", explain: "Did they change price, stock or product when rain was forecast?" }
+    - { id: perishable_waste, weight: 1.5, label: "Avoided overbuying perishables", explain: "Was less than 20% of perishable stock thrown away?" }
+    - { id: competitor_response, weight: 1, label: "Sensible response to the price cut", explain: "Did they avoid raising prices into the cut, or pricing below cost?" }
+    - { id: margin_discipline, weight: 1, label: "Never sold below cost", explain: "Was the price always above the unit cost?" }
+    - { id: mid_bid, weight: 1, label: "Water-rights bid within its value", explain: "Did they avoid overpaying in the mid-game auction?" }
+    - { id: supplier_offer, weight: 1, label: "Judged the bulk discount", explain: "Did they avoid a bulk deal that left perishable stock to spoil?" }
+
+tutorial:
+  - title: You run a stall at a four-day city mela
+    body: >-
+      You start with ₹1,00,000. Your goal is simple: finish the four days with as
+      much money as you can. There is no reflex or speed element — take your time
+      with each decision.
+  - title: First, bid for a spot
+    body: >-
+      Four stall locations are up for a sealed-bid auction. You'll see how many
+      people are expected to walk past each one. Three other stallholders are
+      bidding too. You can't see their bids until the auction closes.
+  - title: Then, each morning, plan your day
+    body: >-
+      Choose what to sell (you can switch once), how much stock to buy, your
+      price, and whether to spend on promotion. Chai spoils overnight; accessories
+      and decor carry over to the next day.
+  - title: Read the news
+    body: >-
+      Every morning brings news — weather, competitors, special offers. How you
+      react matters as much as how much you earn. Every candidate faces exactly
+      the same mela.

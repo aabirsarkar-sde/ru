@@ -1,0 +1,13 @@
+# Stroop task — B.Psych, Section P3.
+# The candidate's reaction times are shown back to them and stored for
+# reference only. They are never scored; only the written explanation is.
+duration_s: 120          # the timed run stops at whichever comes first
+max_trials: 80
+congruent_ratio: 0.5     # half the words are printed in their own colour
+practice_trials: 6
+fixation_ms: 400         # the "+" shown between trials
+colours:
+  - { id: red,    word: RED,    hex: "#D32F2F", key: "r" }
+  - { id: green,  word: GREEN,  hex: "#2E7D32", key: "g" }
+  - { id: blue,   word: BLUE,   hex: "#1565C0", key: "b" }
+  - { id: yellow, word: YELLOW, hex: "#E0A800", key: "y" }

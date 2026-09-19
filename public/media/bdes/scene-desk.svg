@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <radialGradient id="lamplight" cx="0.36" cy="0.62" r="0.62">
+      <stop offset="0" stop-color="#FFE2A8" stop-opacity="0.95"/>
+      <stop offset="0.45" stop-color="#E8A95A" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#1B1D26" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wallnight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1E2230"/>
+      <stop offset="1" stop-color="#2B2A33"/>
+    </linearGradient>
+    <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8A5B34"/>
+      <stop offset="1" stop-color="#3D2513"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1F5C5A"/>
+      <stop offset="0.35" stop-color="#3E8C86"/>
+      <stop offset="1" stop-color="#153F3E"/>
+    </linearGradient>
+    <linearGradient id="shadeInner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF6D6"/>
+      <stop offset="1" stop-color="#F2C46B"/>
+    </linearGradient>
+    <linearGradient id="bottle" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFE9C0"/>
+      <stop offset="0.12" stop-color="#FFFFFF"/>
+      <stop offset="0.3" stop-color="#B9B4AC"/>
+      <stop offset="0.7" stop-color="#5E5A57"/>
+      <stop offset="1" stop-color="#2A2826"/>
+    </linearGradient>
+    <linearGradient id="mug" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F7D9A6"/>
+      <stop offset="0.3" stop-color="#C74B3A"/>
+      <stop offset="1" stop-color="#5A1812"/>
+    </linearGradient>
+    <linearGradient id="castshadow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#wallnight)"/>
+  <!-- window with night sky at back right -->
+  <rect x="540" y="60" width="200" height="220" fill="#0F1624" stroke="#3A3F4D" stroke-width="10"/>
+  <line x1="640" y1="60" x2="640" y2="280" stroke="#3A3F4D" stroke-width="6"/>
+  <circle cx="700" cy="110" r="16" fill="#F4EBD0" opacity="0.85"/>
+  <circle cx="580" cy="130" r="1.6" fill="#fff"/><circle cx="610" cy="200" r="1.2" fill="#fff"/><circle cx="690" cy="220" r="1.4" fill="#fff"/>
+
+  <!-- desk -->
+  <path d="M0 400 L800 380 L800 600 L0 600 Z" fill="url(#desk)"/>
+  <path d="M0 400 L800 380 L800 388 L0 408 Z" fill="#B07A48" opacity="0.6"/>
+
+  <!-- light pool -->
+  <rect width="800" height="600" fill="url(#lamplight)"/>
+
+  <!-- shadows cast away from the lamp (to the right) -->
+  <path d="M390 404 L500 400 L640 440 L470 446 Z" fill="url(#castshadow)"/>
+  <path d="M540 400 L585 398 L720 420 L660 424 Z" fill="url(#castshadow)"/>
+  <path d="M628 398 L668 396 L780 412 L730 416 Z" fill="url(#castshadow)"/>
+
+  <!-- lamp -->
+  <g>
+    <ellipse cx="200" cy="406" rx="70" ry="12" fill="#101010" opacity="0.5"/>
+    <path d="M140 398 Q200 380 260 398 L256 408 Q200 392 144 408 Z" fill="#2B2B2B"/>
+    <rect x="193" y="220" width="12" height="178" fill="#3A3A3A"/>
+    <rect x="195" y="220" width="3" height="178" fill="#8B8B8B"/>
+    <path d="M198 226 L300 170" stroke="#3A3A3A" stroke-width="10" stroke-linecap="round"/>
+    <path d="M250 110 L360 110 L400 214 L210 214 Z" fill="url(#shade)"/>
+    <ellipse cx="305" cy="214" rx="95" ry="14" fill="url(#shadeInner)"/>
+    <path d="M262 118 L232 206" stroke="#7FC0B8" stroke-width="5" opacity="0.6" stroke-linecap="round"/>
+    <ellipse cx="305" cy="218" rx="26" ry="8" fill="#FFFBE8"/>
+  </g>
+
+  <!-- stack of textbooks -->
+  <g>
+    <path d="M360 402 L520 398 L524 426 L362 430 Z" fill="#2E5F8A"/>
+    <path d="M360 402 L520 398 L520 404 L360 408 Z" fill="#F5EEDC"/>
+    <rect x="366" y="410" width="150" height="3" fill="#F3D27A" opacity="0.8"/>
+    <path d="M372 372 L512 368 L516 398 L374 402 Z" fill="#B23A2E"/>
+    <path d="M372 372 L512 368 L512 375 L372 379 Z" fill="#F5EEDC"/>
+    <path d="M378 386 L508 382" stroke="#F0C9A0" stroke-width="2"/>
+    <path d="M354 340 L500 334 L506 368 L356 372 Z" fill="#E1B546"/>
+    <path d="M354 340 L500 334 L500 342 L354 348 Z" fill="#FBF6E8"/>
+    <text x="380" y="362" font-family="Georgia,serif" font-size="13" fill="#5A3E0E" transform="rotate(-2 380 362)">PHYSICS · XII</text>
+    <path d="M376 312 L480 306 L484 334 L378 338 Z" fill="#3E7A4A"/>
+    <path d="M376 312 L480 306 L480 312 L376 318 Z" fill="#F7F1E0"/>
+    <!-- light hits the left edges -->
+    <path d="M360 404 L362 430" stroke="#FFE7B3" stroke-width="3" opacity="0.7"/>
+    <path d="M372 374 L374 402" stroke="#FFE7B3" stroke-width="3" opacity="0.7"/>
+    <path d="M354 342 L356 372" stroke="#FFE7B3" stroke-width="3" opacity="0.7"/>
+  </g>
+
+  <!-- steel water bottle -->
+  <g>
+    <ellipse cx="562" cy="400" rx="30" ry="6" fill="#000" opacity="0.4"/>
+    <rect x="534" y="236" width="56" height="164" rx="18" fill="url(#bottle)"/>
+    <rect x="544" y="214" width="36" height="28" rx="6" fill="#2A2A2A"/>
+    <rect x="546" y="216" width="8" height="24" rx="3" fill="#7A7A7A"/>
+    <path d="M542 252 L542 386" stroke="#FFFFFF" stroke-width="5" opacity="0.85" stroke-linecap="round"/>
+    <rect x="534" y="300" width="56" height="4" fill="#2A2826" opacity="0.4"/>
+  </g>
+
+  <!-- pen cup -->
+  <g>
+    <line x1="636" y1="330" x2="622" y2="250" stroke="#1D3E8C" stroke-width="5" stroke-linecap="round"/>
+    <line x1="648" y1="330" x2="660" y2="262" stroke="#C0392B" stroke-width="5" stroke-linecap="round"/>
+    <line x1="656" y1="332" x2="690" y2="276" stroke="#E6B422" stroke-width="7" stroke-linecap="round"/>
+    <path d="M690 276 l6 -10 l-2 12 z" fill="#2B2B2B"/>
+    <line x1="642" y1="332" x2="640" y2="258" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+    <path d="M620 318 L688 318 L682 398 Q682 404 674 404 L634 404 Q626 404 626 398 Z" fill="url(#mug)"/>
+    <ellipse cx="654" cy="318" rx="34" ry="7" fill="#3A0F0B"/>
+    <path d="M628 326 L632 396" stroke="#FFE3B8" stroke-width="4" opacity="0.7" stroke-linecap="round"/>
+  </g>
+
+  <!-- eraser and a loose sheet -->
+  <path d="M120 470 L330 450 L346 520 L128 540 Z" fill="#F6F0E2" opacity="0.92"/>
+  <g stroke="#9AB5D6" stroke-width="1" opacity="0.8">
+    <line x1="138" y1="480" x2="330" y2="462"/><line x1="140" y1="494" x2="333" y2="476"/><line x1="142" y1="508" x2="336" y2="490"/><line x1="144" y1="522" x2="339" y2="504"/>
+  </g>
+  <rect x="420" y="470" width="40" height="18" rx="3" fill="#F2A7B5" transform="rotate(-8 440 479)"/>
+  <rect x="420" y="470" width="14" height="18" rx="3" fill="#3C66B8" transform="rotate(-8 440 479)"/>
+</svg>

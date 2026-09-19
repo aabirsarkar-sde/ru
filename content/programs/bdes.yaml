@@ -1,0 +1,597 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# B.Design — Stage 2 aptitude test
+# PLACEHOLDER CONTENT (PRD §0.5): seeded as-is so flows can be tested end to
+# end. Faculty will rewrite prompts, keys and rubrics before content lock.
+# ─────────────────────────────────────────────────────────────────────────────
+id: bdes
+name: B.Design
+full_name: Bachelor of Design
+school: School of Creativity
+accent: narangi
+duration_min: 135
+traits: [Empathy, Observation, Visual thinking, Ideation, Visual literacy, Reflective thinking]
+pitch: >-
+  See an everyday app through someone else's eyes, design for real people,
+  and show us how you think about images. There are no trick questions and no
+  marks for neatness.
+window: { id: w-2026-oct-a, name: "October window A", seed: "RU-2026-OCT-A" }
+
+sections:
+  - id: D1
+    code: D1
+    title: Best Work
+    kind: pretest
+    duration_min: null
+    weight: 9
+    traits: [Reflective thinking]
+    summary: Share one piece you're proud of — and how you made it.
+    intro: >-
+      Upload photos of the visual work you're proudest of — a drawing, painting,
+      collage, model, anything. Add one work-in-progress photo or rough sketch of
+      the same piece. In your Stage 3 interview you'll talk us through how you
+      made it, so choose something you can discuss.
+    items:
+      - id: d1_work
+        type: photo_upload
+        prompt: Upload 1–3 photos of your best visual work.
+        help: Clear, well-lit photos are enough. A phone camera is fine.
+        min_files: 1
+        max_files: 3
+        rubric_id: d1_best_work
+        max_score: 4
+        required: true
+        tags: [reflective, technical]
+      - id: d1_wip
+        type: photo_upload
+        prompt: Upload one work-in-progress photo or rough sketch of the same piece.
+        help: This helps us see your process. It doesn't need to look good.
+        min_files: 1
+        max_files: 1
+        scored: false
+        required: true
+        tags: [process, originality]
+      - id: d1_reflect
+        type: short_text
+        prompt: What were you trying to do in this piece, and what would you change?
+        word_limit: 80
+        scored: false
+        tags: [reflective]
+
+  - id: D2
+    code: D2
+    title: Design for People
+    duration_min: 25
+    weight: 22
+    traits: [Empathy, Observation, Visual thinking]
+    summary: Step into someone else's shoes and find where an everyday app lets them down.
+    intro: >-
+      This section is about people, not pixels. You'll meet someone using an
+      everyday app and see the screens they see. Your job is to notice where it
+      lets them down, think about how they feel, and suggest what would help.
+      You don't need to know any design jargon — we're looking at how well you
+      can see the world through someone else's eyes.
+    items:
+      - { draw: d2_cases, count: 1 }
+
+  - id: D3
+    code: D3
+    title: Visual Literacy & Gestalt
+    duration_min: 20
+    weight: 14
+    traits: [Visual literacy]
+    summary: Twelve quick questions about how people see images, plus one poster to lay out.
+    intro: >-
+      Twelve questions about how we see: grouping, figure and ground, hierarchy,
+      colour. Most are multiple choice. The last one asks you to arrange a
+      poster. Trust your eyes.
+    items:
+      - id: d3_closure
+        type: mcq_single
+        prompt: Which logo relies on *closure* to be read — your mind completes a shape that isn't fully drawn?
+        layout: grid
+        options:
+          - { id: a, label: A, media: { kind: image, src: /media/bdes/logo-a.svg, alt: A solid orange circle with a bold letter S inside } }
+          - { id: b, label: B, media: { kind: image, src: /media/bdes/logo-b.svg, alt: Three overlapping squares in different colours } }
+          - { id: c, label: C, media: { kind: image, src: /media/bdes/logo-c.svg, alt: "Eight separate short arcs arranged in a ring, with gaps between them" } }
+          - { id: d, label: D, media: { kind: image, src: /media/bdes/logo-d.svg, alt: A striped triangle with a thick outline } }
+        answer: c
+        tags: [gestalt, closure, easy]
+      - id: d3_proximity
+        type: mcq_single
+        prompt: Why do you see three columns here, rather than rows?
+        media:
+          - { kind: image, src: /media/bdes/dots-proximity.svg, alt: A grid of identical dots grouped into three columns by the spacing between them }
+        options:
+          - { id: proximity, label: Proximity — things close together look like a group }
+          - { id: similarity, label: Similarity — things that look alike look like a group }
+          - { id: continuity, label: Continuity — the eye follows smooth lines }
+          - { id: region, label: Common region — things inside a boundary look like a group }
+        answer: proximity
+        tags: [gestalt, proximity, easy]
+      - id: d3_similarity
+        type: mcq_single
+        prompt: These dots are all evenly spaced. Why do you still see columns?
+        media:
+          - { kind: image, src: /media/bdes/dots-similarity.svg, alt: An evenly spaced grid of dots where alternate columns are orange and dark grey }
+        options:
+          - { id: proximity, label: Proximity }
+          - { id: similarity, label: Similarity }
+          - { id: closure, label: Closure }
+          - { id: figure, label: Figure–ground }
+        answer: similarity
+        tags: [gestalt, similarity, easy]
+      - id: d3_figure_ground
+        type: mcq_single
+        prompt: What are the two images you can see in this composition?
+        media:
+          - { kind: image, src: /media/bdes/figure-ground.svg, alt: A black and white figure-ground illusion }
+        options:
+          - { id: a, label: "A vase, and two faces in profile looking at each other" }
+          - { id: b, label: "A candle, and two hands" }
+          - { id: c, label: "A tree, and a river" }
+          - { id: d, label: "A single face, seen from the front" }
+        answer: a
+        tags: [figure-ground, easy]
+      - id: d3_hierarchy
+        type: mcq_single
+        prompt: Two versions of the same event poster. Which communicates the date faster, and why?
+        media:
+          - { kind: image, src: /media/bdes/poster-a.svg, alt: "Poster A: the date is set very large near the top, with empty space around it", caption: Poster A }
+          - { kind: image, src: /media/bdes/poster-b.svg, alt: "Poster B: every line is the same size, with the date inside a paragraph near the bottom", caption: Poster B }
+        options:
+          - { id: a1, label: "A — the date is the largest element and has space around it" }
+          - { id: a2, label: "A — because it uses fewer colours" }
+          - { id: b1, label: "B — the date is at the bottom, where the eye finishes" }
+          - { id: b2, label: "B — because all the information is the same size, so nothing is missed" }
+        answer: a1
+        tags: [hierarchy, medium]
+      - id: d3_colourblind
+        type: mcq_single
+        prompt: Which palette would be *least* legible for a person with red–green colour blindness?
+        layout: grid
+        options:
+          - { id: p1, label: Palette 1, media: { kind: palette, colors: ["#1F4E79", "#F2A900", "#FFFFFF", "#222222"] } }
+          - { id: p2, label: Palette 2, media: { kind: palette, colors: ["#C0392B", "#27AE60", "#B5651D", "#6B8E23"] } }
+          - { id: p3, label: Palette 3, media: { kind: palette, colors: ["#000000", "#FFFFFF", "#0072B2", "#E69F00"] } }
+          - { id: p4, label: Palette 4, media: { kind: palette, colors: ["#561842", "#FFE5CD", "#104477", "#F2D5A0"] } }
+        answer: p2
+        tags: [colour, accessibility, medium]
+      - id: d3_contrast
+        type: mcq_single
+        prompt: Which text-and-background pair would be hardest to read on a sunny street?
+        layout: grid
+        options:
+          - { id: a, label: White on navy, media: { kind: palette, label: Aa, colors: ["#062E56", "#FFFFFF"] } }
+          - { id: b, label: Yellow on white, media: { kind: palette, label: Aa, colors: ["#FFFFFF", "#F4D03F"] } }
+          - { id: c, label: Black on yellow, media: { kind: palette, label: Aa, colors: ["#F4D03F", "#111111"] } }
+          - { id: d, label: White on red, media: { kind: palette, label: Aa, colors: ["#B20E38", "#FFFFFF"] } }
+        answer: b
+        tags: [colour, contrast, easy]
+      - id: d3_continuity
+        type: mcq_single
+        prompt: Most people see two smooth lines crossing, not four short lines meeting at a point. Which principle explains this?
+        media:
+          - { kind: image, src: /media/bdes/continuity.svg, alt: Two smooth curved lines crossing each other in an X shape }
+        options:
+          - { id: proximity, label: Proximity }
+          - { id: continuity, label: Continuity }
+          - { id: closure, label: Closure }
+          - { id: symmetry, label: Symmetry }
+        answer: continuity
+        tags: [gestalt, continuity, medium]
+      - id: d3_region
+        type: mcq_single
+        prompt: The dots are evenly spaced, yet you see pairs. What is doing the grouping?
+        media:
+          - { kind: image, src: /media/bdes/dots-region.svg, alt: A row of evenly spaced dots where pairs are enclosed in soft rounded rectangles }
+        options:
+          - { id: region, label: Common region — the shaded shapes around them }
+          - { id: similarity, label: Similarity — the dots look alike }
+          - { id: proximity, label: Proximity — the dots are closer in pairs }
+          - { id: continuity, label: Continuity — the dots form a line }
+        answer: region
+        tags: [gestalt, common-region, medium]
+      - id: d3_icons
+        type: mcq_single
+        prompt: A delivery app needs a "home" icon that still reads at 16 pixels on a cheap phone. Which is the best starting point?
+        layout: grid
+        options:
+          - { id: a, label: A, media: { kind: image, src: /media/bdes/icon-a.svg, alt: "A detailed house drawing with windows, bricks, a chimney with smoke and a fence" } }
+          - { id: b, label: B, media: { kind: image, src: /media/bdes/icon-b.svg, alt: A simple solid house silhouette with a door cut out } }
+          - { id: c, label: C, media: { kind: image, src: /media/bdes/icon-c.svg, alt: A thin-outline house in perspective with a garden path } }
+          - { id: d, label: D, media: { kind: image, src: /media/bdes/icon-d.svg, alt: The word HOME in a decorative script } }
+        answer: b
+        tags: [icons, legibility, medium]
+      - id: d3_menu
+        type: mcq_multi
+        prompt: A roadside dhaba's menu card is crowded and hard to scan. Which changes would help? Select all that apply.
+        partial: proportional
+        max_score: 2
+        options:
+          - { id: align, label: Line the prices up in one column on the right }
+          - { id: headings, label: "Group dishes under clear headings (Breakfast, Thalis, Drinks)" }
+          - { id: centre, label: Centre-align every line }
+          - { id: colours, label: Give every dish name a different colour }
+          - { id: weights, label: Use one typeface in two weights — bold for dish names }
+        answer: [align, headings, weights]
+        tags: [hierarchy, typography, medium]
+      - id: d3_poster
+        type: layout_drag
+        prompt: Arrange a poster for a college fest so the date is noticed within 3 seconds.
+        help: >-
+          Drag each block onto the poster. Drag the corner handle to resize. You
+          can also select a block and use the arrow keys (hold Shift for bigger
+          steps). You don't have to use every block.
+        rubric_id: d3_layout
+        max_score: 4
+        artboard: { width: 360, height: 510, background: "#FFF8EE", label: "A3 poster" }
+        blocks:
+          - { id: headline, kind: headline, label: Headline, text: "UTSAV '26", width: 260, height: 70 }
+          - { id: image, kind: image, label: Image, width: 220, height: 160 }
+          - { id: date, kind: date, label: Date, text: "14–16 FEB", width: 180, height: 50 }
+          - { id: venue, kind: text, label: Venue, text: "Main lawns, Rishihood campus · Sonipat", width: 240, height: 40 }
+          - { id: tagline, kind: text, label: Tagline, text: "Three days of music, food & making", width: 240, height: 36 }
+        auto_checks:
+          - { id: date_placed, label: Date is on the poster, rule: placed, block: date }
+          - { id: date_top, label: Date sits in the top third, rule: in_top_third, block: date }
+          - { id: date_big, label: Date is the largest text block, rule: largest_text, block: date }
+          - { id: no_overlap, label: No blocks overlap, rule: no_overlap }
+          - { id: inside, label: Everything fits on the poster, rule: inside_artboard }
+        tags: [layout, hierarchy]
+
+  - id: D4
+    code: D4
+    title: Design a Solution
+    duration_min: 35
+    weight: 32
+    traits: [Ideation, Visual thinking]
+    summary: An everyday problem. Three quick ideas, one developed, and a short explanation.
+    intro: >-
+      You'll get one everyday problem. First sketch at least three quick,
+      different ideas — rough is good. Then develop one of them with notes
+      explaining how it works. Finally, tell us who it's for and how it could
+      fail. Sketch on screen or on paper.
+    items:
+      - { draw: d4_briefs, count: 1 }
+
+  - id: D5
+    code: D5
+    title: Future of Design
+    duration_min: 15
+    weight: 13
+    traits: [Reflective thinking]
+    summary: A short piece of writing on where design is going.
+    intro: >-
+      One question, around 200 words. There's no right answer. We want your own
+      thinking, with specific examples.
+    items:
+      - { draw: d5_prompts, count: 1 }
+
+  # Shared across every programme — see content/common/contribution.yaml
+  - { include: contribution, weight: 10 }
+
+pools:
+  # D2 — Design for People. The app screens are made-up and simplified. To use
+  # real screenshots instead, drop the image in public/media/bdes/ux/ and
+  # update `image.src` and the problem `zones` (in % of the image; run
+  # `npm run content:check` afterwards). Zones are evidence for evaluators,
+  # never shown to candidates, and never the score on their own.
+  d2_cases:
+    - type: stimulus_passage
+      id: d2_kamla
+      eyebrow: Meet the person
+      title: Kamla-ji's Sunday order
+      body: |
+        **Kamla-ji is 68** and lives in Jaipur with her son's family. She reads with glasses, is happy on WhatsApp video calls, and prefers Hindi — though she can read simple English.
+
+        Every Sunday she orders the same things — milk, atta and a few vegetables — on *Jaldi*, a 10-minute grocery app her grandson installed. Today he's away at college, so **she's ordering on her own** for the first time.
+
+        *Jaldi is a made-up app. The screens are simplified.*
+      media:
+        - kind: image
+          src: /media/bdes/ux/persona-kamla.svg
+          alt: "Illustration of Kamla-ji, an older woman in glasses holding a phone, with a cup of chai beside her"
+      items:
+        - id: d2k_stuck
+          type: hotspot
+          prompt: This is the first screen Kamla-ji sees. Where will she get stuck, confused or worried?
+          help: Place up to 3 pins on the screen. For each one, write what she might be thinking at that moment — in her voice, not yours.
+          image:
+            src: /media/bdes/ux/jaldi-home.svg
+            alt: "Jaldi home screen: a large festive sale banner, a row of unlabelled category icons, trending products with small faint pack sizes and small ADD buttons, a 'Buy again' row near the bottom, and an icon-only bottom menu"
+            width: 340
+          max_pins: 3
+          min_pins: 2
+          note_label: What is Kamla-ji thinking here?
+          note_word_limit: 30
+          zones:
+            - { id: banner, label: "Big festive banner takes the prime space", x: 4.4, y: 17.9, w: 91.1, h: 16.8 }
+            - { id: icons, label: "Category icons have no words under them", x: 4.4, y: 36.3, w: 91.1, h: 7.9 }
+            - { id: sizes, label: "Pack size is in tiny, faint text", x: 4.4, y: 62.9, w: 91.1, h: 1.8 }
+            - { id: add, label: "Small 'ADD' buttons are easy to miss", x: 19.4, y: 66.3, w: 77.8, h: 3.7 }
+            - { id: buyagain, label: "'Buy again' — her usual order — is buried at the bottom", x: 4.4, y: 73.7, w: 91.1, h: 16.3 }
+            - { id: nav, label: "Bottom menu is icons only", x: 0, y: 91.1, w: 100, h: 8.9 }
+          rubric_id: d2_empathy_pins
+          max_score: 4
+          tags: [empathy, observation]
+        - id: d2k_checkout
+          type: mcq_multi
+          prompt: At checkout, which of these work *against* Kamla-ji rather than for her? Select all that apply.
+          media:
+            - kind: image
+              src: /media/bdes/ux/jaldi-checkout.svg
+              alt: "Jaldi checkout: a red 'Hurry! Your offer ends in 04:59' strip, a ₹20 tip already selected, a ticked ₹2 donation box, a handling charge in tiny grey text, 'Arriving in 9 mins', and a large Pay ₹340 button"
+              caption: Jaldi — checkout
+              frame: phone
+              width: 300
+          partial: proportional
+          max_score: 2
+          options:
+            - { id: timer, label: "The 'Hurry! Your offer ends in 04:59' countdown" }
+            - { id: tip, label: "The ₹20 tip that is already selected" }
+            - { id: donate, label: "The donation box that is already ticked" }
+            - { id: fee, label: "The handling charge shown in tiny grey text" }
+            - { id: pay, label: "The big 'Pay ₹340' button" }
+            - { id: eta, label: "The 'Arriving in 9 mins' line" }
+          answer: [timer, tip, donate, fee]
+          tags: [empathy, ethics, dark-patterns]
+        - id: d2k_rank
+          type: ranking
+          prompt: Her grandson can make one change to Jaldi this week. Rank these from most to least helpful *for Kamla-ji*.
+          top_label: Most helpful for her
+          bottom_label: Least helpful
+          max_score: 2
+          options:
+            - { id: usual, label: "A big 'Order my usual' button at the top of the home screen" }
+            - { id: text, label: Bigger text and words under every icon }
+            - { id: hindi, label: A Hindi language option }
+            - { id: banner, label: A new animated festive banner }
+          answer: [usual, text, hindi, banner]
+          tags: [empathy, prioritisation]
+        - id: d2k_map
+          type: short_text
+          prompt: "Her order says \"Delayed\" and her son is about to leave for work. What is Kamla-ji saying, thinking, feeling and doing?"
+          help: Short phrases are fine. Try to imagine what she wouldn't say out loud.
+          fields:
+            - { id: says, label: Says, word_limit: 25, rows: 2 }
+            - { id: thinks, label: Thinks, word_limit: 25, rows: 2 }
+            - { id: feels, label: Feels, word_limit: 25, rows: 2 }
+            - { id: does, label: Does, word_limit: 25, rows: 2 }
+          rubric_id: d2_empathy_map
+          max_score: 4
+          tags: [empathy]
+        - id: d2k_sketch
+          type: drawing_canvas
+          prompt: Pick one problem you pinned. Sketch how that screen could work better for Kamla-ji.
+          help: A rough phone-shaped sketch with arrows and notes is perfect. Draw on screen, or on paper and upload a photo.
+          guides: phone
+          aspect: 1.4
+          rubric_id: d2_redesign
+          max_score: 4
+          tags: [visual-thinking, empathy]
+        - id: d2k_copy
+          type: short_text
+          prompt: The 1-litre milk Kamla-ji orders every week is out of stock today. Write the message the app shows her.
+          help: Maximum 30 words. Think about what she needs to know, and what she can do next.
+          word_limit: 30
+          rubric_id: d2_microcopy
+          max_score: 3
+          tags: [empathy, writing]
+
+    - type: stimulus_passage
+      id: d2_farida
+      eyebrow: Meet the person
+      title: Farida's 7:30 pm dinner order
+      body: |
+        **Farida is 34** and works at a bank in Lucknow. She gets home at 7:30 pm to a family of five, and most evenings orders dinner on *Thali Express* — while holding her two-year-old on one hip.
+
+        So she has **one free hand, about two minutes of attention**, and a three-year-old budget Android phone.
+
+        *Thali Express is a made-up app. The screens are simplified.*
+      media:
+        - kind: image
+          src: /media/bdes/ux/persona-farida.svg
+          alt: "Illustration of Farida holding a toddler on one hip and a phone in her other hand; a clock reads 7:32"
+      items:
+        - id: d2f_stuck
+          type: hotspot
+          prompt: This is Farida's cart. Where will this screen make her evening harder?
+          help: Place up to 3 pins on the screen. For each one, write what she might be thinking at that moment — in her voice, not yours.
+          image:
+            src: /media/bdes/ux/thali-cart.svg
+            alt: "Thali Express cart: a small 'Place order' link in the top-right corner, tiny remove crosses and small veg/non-veg squares beside each dish, a coupon box that needs a typed code, and a long 'Swipe to pay' slider at the bottom"
+            width: 340
+          max_pins: 3
+          min_pins: 2
+          note_label: What is Farida thinking here?
+          note_word_limit: 30
+          zones:
+            - { id: placeorder, label: "'Place order' sits in the top corner, far from her thumb", x: 75, y: 5, w: 25, h: 3.4 }
+            - { id: remove, label: "Tiny ✕ to remove items, right next to the names", x: 3.9, y: 18.4, w: 7.2, h: 17.9 }
+            - { id: vegdots, label: "Veg / non-veg shown only by tiny coloured squares", x: 7.8, y: 18.4, w: 4.4, h: 17.9 }
+            - { id: coupon, label: "Coupons need a code typed in", x: 4.4, y: 50, w: 91.1, h: 8.2 }
+            - { id: swipe, label: "'Swipe to pay' needs a long, careful swipe", x: 4.4, y: 88.9, w: 91.1, h: 7.6 }
+          rubric_id: d2_empathy_pins
+          max_score: 4
+          tags: [empathy, observation]
+        - id: d2f_tracking
+          type: mcq_multi
+          prompt: Dinner is running late. Which parts of this tracking screen make it harder for Farida to know what's going on? Select all that apply.
+          media:
+            - kind: image
+              src: /media/bdes/ux/thali-track.svg
+              alt: "Thali Express tracking: a 'Thali Gold' ad covering the map, a pop-up asking her to rate her last order, 'Arriving soon' with no time, the rider's name and photo, and a ⋮ menu hiding the call button"
+              caption: Thali Express — order tracking
+              frame: phone
+              width: 300
+          partial: proportional
+          max_score: 2
+          options:
+            - { id: upsell, label: "The 'Thali Gold' offer covering the map" }
+            - { id: rating, label: The pop-up asking her to rate her last order }
+            - { id: eta, label: "'Arriving soon' instead of a time" }
+            - { id: menu, label: "Calling the rider is hidden behind the ⋮ menu" }
+            - { id: rider, label: "The rider's name and photo" }
+            - { id: map, label: The map showing where the rider is }
+          answer: [upsell, rating, eta, menu]
+          tags: [empathy, ethics, dark-patterns]
+        - id: d2f_rank
+          type: ranking
+          prompt: The app team can fix one thing this month. Rank these from most to least helpful *for Farida*.
+          top_label: Most helpful for her
+          bottom_label: Least helpful
+          max_score: 2
+          options:
+            - { id: thumb, label: Move the main button to the bottom where her thumb can reach it }
+            - { id: reorder, label: Let her repeat a past order in one tap }
+            - { id: veg, label: "Label dishes clearly as 'Veg' or 'Non-veg' in words" }
+            - { id: dark, label: Add a dark mode }
+          answer: [thumb, reorder, veg, dark]
+          tags: [empathy, prioritisation]
+        - id: d2f_map
+          type: short_text
+          prompt: "Now switch sides. Suresh, the delivery rider, is stuck in traffic and 25 minutes late; Farida has called him twice. What is Suresh saying, thinking, feeling and doing?"
+          help: Short phrases are fine. Try to imagine what he wouldn't say out loud.
+          fields:
+            - { id: says, label: Says, word_limit: 25, rows: 2 }
+            - { id: thinks, label: Thinks, word_limit: 25, rows: 2 }
+            - { id: feels, label: Feels, word_limit: 25, rows: 2 }
+            - { id: does, label: Does, word_limit: 25, rows: 2 }
+          rubric_id: d2_empathy_map
+          max_score: 4
+          tags: [empathy, perspective]
+        - id: d2f_sketch
+          type: drawing_canvas
+          prompt: Pick one problem you pinned. Sketch how that screen could work better for Farida.
+          help: A rough phone-shaped sketch with arrows and notes is perfect. Draw on screen, or on paper and upload a photo.
+          guides: phone
+          aspect: 1.4
+          rubric_id: d2_redesign
+          max_score: 4
+          tags: [visual-thinking, empathy]
+        - id: d2f_copy
+          type: short_text
+          prompt: Farida's dinner is 25 minutes late because the restaurant was slow. Write the notification she sees.
+          help: Maximum 30 words. Think about what she needs to know, and what she can do next.
+          word_limit: 30
+          rubric_id: d2_microcopy
+          max_score: 3
+          tags: [empathy, writing]
+
+  d4_briefs:
+    - type: stimulus_passage
+      id: d4_medicine
+      eyebrow: Your brief
+      title: Five medicines a day
+      body: >-
+        In a joint family, an elderly grandparent takes five medicines a day and
+        often forgets whether they've taken them. Others in the house are busy and
+        don't always notice. **Design something that helps.**
+      media:
+        - { kind: image, src: /media/bdes/brief-medicine.svg, alt: "Illustration: a grandparent's hand beside a steel plate of assorted tablets and a glass of water" }
+      items:
+        - id: d4_medicine_thumbs
+          type: drawing_canvas
+          prompt: Sketch at least three quick, different ideas.
+          help: One box per idea. Quick and rough is exactly right — spend about 10 minutes.
+          guides: thumbnails3
+          aspect: 2.4
+          scored: false
+          tags: [ideation]
+        - id: d4_medicine_develop
+          type: drawing_canvas
+          prompt: Develop one idea. Add notes that explain how it works.
+          help: Use arrows and labels. Show it in use if you can.
+          scored: false
+          tags: [visual-thinking]
+        - id: d4_medicine_explain
+          type: short_text
+          prompt: Who is it for, how does it work, and one way it could fail?
+          word_limit: 120
+          rubric_id: d4_problem_solving
+          max_score: 4
+          tags: [ideation, reflective]
+    - type: stimulus_passage
+      id: d4_rain
+      eyebrow: Your brief
+      title: When it rains
+      body: >-
+        Street vendors — fruit sellers, chaat carts, flower sellers — lose
+        customers when it rains. People hurry past, and the vendor's goods get
+        wet. **Design something that helps.**
+      media:
+        - { kind: image, src: /media/bdes/brief-rain.svg, alt: "Illustration: a fruit cart under a torn plastic sheet in the rain" }
+      items:
+        - id: d4_rain_thumbs
+          type: drawing_canvas
+          prompt: Sketch at least three quick, different ideas.
+          help: One box per idea. Quick and rough is exactly right — spend about 10 minutes.
+          guides: thumbnails3
+          aspect: 2.4
+          scored: false
+          tags: [ideation]
+        - id: d4_rain_develop
+          type: drawing_canvas
+          prompt: Develop one idea. Add notes that explain how it works.
+          help: Use arrows and labels. Show it in use if you can.
+          scored: false
+          tags: [visual-thinking]
+        - id: d4_rain_explain
+          type: short_text
+          prompt: Who is it for, how does it work, and one way it could fail?
+          word_limit: 120
+          rubric_id: d4_problem_solving
+          max_score: 4
+          tags: [ideation, reflective]
+    - type: stimulus_passage
+      id: d4_bus
+      eyebrow: Your brief
+      title: Which bus, and when?
+      body: >-
+        Students waiting at a crowded bus stop can't tell when their bus will
+        arrive. Many don't have data on their phones, and the stop has no
+        display. **Design something that helps.**
+      media:
+        - { kind: image, src: /media/bdes/brief-bus.svg, alt: "Illustration: students at a crowded bus stop craning to look down the road" }
+      items:
+        - id: d4_bus_thumbs
+          type: drawing_canvas
+          prompt: Sketch at least three quick, different ideas.
+          help: One box per idea. Quick and rough is exactly right — spend about 10 minutes.
+          guides: thumbnails3
+          aspect: 2.4
+          scored: false
+          tags: [ideation]
+        - id: d4_bus_develop
+          type: drawing_canvas
+          prompt: Develop one idea. Add notes that explain how it works.
+          help: Use arrows and labels. Show it in use if you can.
+          scored: false
+          tags: [visual-thinking]
+        - id: d4_bus_explain
+          type: short_text
+          prompt: Who is it for, how does it work, and one way it could fail?
+          word_limit: 120
+          rubric_id: d4_problem_solving
+          max_score: 4
+          tags: [ideation, reflective]
+
+  d5_prompts:
+    - id: d5_ai_logos
+      type: long_text
+      prompt: An AI tool can now generate a hundred logo options in ten seconds. What will a designer be paid for in 2035?
+      word_limit: 200
+      rubric_id: d5_future
+      max_score: 4
+    - id: d5_elderly
+      type: long_text
+      prompt: Pick one object in your home that should be redesigned for a world with more elderly people. What would you change?
+      word_limit: 200
+      rubric_id: d5_future
+      max_score: 4
+    - id: d5_admire
+      type: long_text
+      prompt: Design is often judged by how things look. Describe a design you admire for a reason other than appearance.
+      word_limit: 200
+      rubric_id: d5_future
+      max_score: 4

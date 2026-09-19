@@ -1,0 +1,143 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# COMMON SECTION — used by every programme via `- { include: contribution }`
+# in each programme file. Edit once; all three tests change together.
+#
+# Two parts:
+#   Part 1 · The country  — is there a real, specific problem they care about,
+#                           and have they ever acted on anything, however small?
+#   Part 2 · The campus   — would they actually give time to clubs, fests and
+#                           clans, and do they follow through when it's hard?
+#
+# PLACEHOLDER CONTENT. Faculty to finalise wording and the SJT key.
+# Design notes for whoever edits this:
+#   • Ask for evidence and specifics, not declarations of patriotism. Slogans
+#     are easy to fake; "who is affected, and what did you actually do" is not.
+#   • "I haven't done anything yet" answered honestly, with a real plan, should
+#     score better than an invented achievement (see the rubrics).
+#   • Keep prompts away from party politics, religion and region.
+# ─────────────────────────────────────────────────────────────────────────────
+id: C1
+code: C1
+title: Contribution
+duration_min: 15
+weight: 10
+traits: [Civic interest, Initiative, Contribution to campus life]
+scratchpad: false
+summary: What you'd like to change in the country — and what you'd give to life on campus.
+intro: >-
+  Rishihood is built around the idea that education should produce people who
+  build things for others — in the country, and on campus. This last section
+  isn't about how patriotic you can sound. It's about what you actually care
+  about, what you've already done about it (however small), and what you'd give
+  your time to here. Short, honest and specific beats grand.
+items:
+  # ── Part 1 · The country ──────────────────────────────────────────────────
+  - type: stimulus_passage
+    id: c1_nation_group
+    eyebrow: Part 1 of 2
+    title: Something worth fixing
+    body: |
+      India has no shortage of problems worth working on — a school with no drinking water, farmers who can't find a fair price, a river nobody swims in any more, a grandmother who can't read her own medicine label.
+
+      **Pick one you actually care about.** Not the biggest one; the one you'd still be interested in five years from now.
+    items:
+      - id: c1_issue
+        type: short_text
+        prompt: Which problem would you want to help fix, and why that one?
+        help: >-
+          About 100 words. Be specific about who it affects and how you know
+          about it. A problem you've seen up close is worth more here than a
+          famous one.
+        word_limit: 100
+        rubric_id: c1_nation
+        max_score: 4
+        tags: [civic, specificity]
+      - id: c1_done
+        type: short_text
+        prompt: What's the closest you've come to doing something about it — or about any problem around you?
+        help: >-
+          About 80 words. However small: a WhatsApp group, one Sunday, helping
+          one person. If the honest answer is "nothing yet", say so and tell us
+          what has stopped you.
+        word_limit: 80
+        rubric_id: c1_evidence
+        max_score: 4
+        tags: [initiative, honesty]
+      - id: c1_ten_years
+        type: short_text
+        prompt: "Ten years from now, you have one working day a month to give to this problem. What would you spend it doing?"
+        help: About 60 words. Something you could actually do with a day.
+        word_limit: 60
+        rubric_id: c1_nation
+        max_score: 3
+        tags: [civic, realism]
+
+  # ── Part 2 · The campus ───────────────────────────────────────────────────
+  - type: stimulus_passage
+    id: c1_campus_group
+    eyebrow: Part 2 of 2
+    title: Life outside the classroom
+    body: |
+      Campus life at Rishihood runs on students: **clubs** (from robotics to theatre), the annual **fest**, and **clans** — mixed houses that compete through the year at sport, culture and service.
+
+      All of it is built by people who show up, especially when it's inconvenient.
+    items:
+      - id: c1_hours
+        type: allocation
+        prompt: You have five free hours in a normal week, outside classes and study. Where would they honestly go?
+        help: Drag the sliders until all five hours are spent. This isn't scored — it tells us where you'd like to get involved.
+        total: 5
+        unit: hours
+        step: 0.5
+        max_per_option: 5
+        scored: false
+        options:
+          - { id: club, label: A club you care about, hint: "Robotics, debate, theatre, music, coding, photography…" }
+          - { id: fest, label: Organising the fest or an event, hint: "Sponsorships, logistics, design, hosting" }
+          - { id: clan, label: Clan sport and competitions, hint: "Playing, coaching or cheering for your house" }
+          - { id: service, label: Service in the neighbouring villages, hint: "Teaching, health camps, clean-ups" }
+          - { id: build, label: Building your own project or venture, hint: "Alone or with a couple of friends" }
+          - { id: rest, label: "Rest, friends and family", hint: "A real answer, not a wasted one" }
+        tags: [campus, priorities]
+      - id: c1_first_term
+        type: short_text
+        prompt: Pick one club, fest team or clan activity you'd join in your first term. What would you actually do in your first 90 days?
+        help: >-
+          About 80 words. "I'd join the music club" tells us little; "I'd run a
+          Thursday open mic and find three first-years who play" tells us a lot.
+        word_limit: 80
+        rubric_id: c1_campus
+        max_score: 4
+        tags: [campus, initiative]
+      - id: c1_sjt_fest
+        type: ranking
+        prompt: >-
+          You volunteered for the fest decoration team. Two days before the
+          fest, you're behind on exam preparation, and the team is short of
+          hands tonight. Rank these responses from most to least appropriate.
+        max_score: 3
+        top_label: Most appropriate
+        bottom_label: Least appropriate
+        options:
+          - { id: tell_early, label: "Tell the team lead now that you can only do two hours tonight, and finish the part you promised." }
+          - { id: full_night, label: "Stay the whole night with the team and hope you can manage the exam somehow." }
+          - { id: quiet, label: "Don't reply to the group and study — they'll manage without you." }
+          - { id: swap, label: "Ask a friend who isn't in the team to cover for you without telling the team lead." }
+        answer: [tell_early, full_night, swap, quiet]
+        tags: [campus, reliability, sjt]
+      - id: c1_clan_sjt
+        type: ranking
+        prompt: >-
+          Your clan is picking a cricket team. A first-year who trains hard but
+          plays badly is left out by the group, and looks upset. Rank these
+          responses from most to least appropriate.
+        max_score: 3
+        top_label: Most appropriate
+        bottom_label: Least appropriate
+        options:
+          - { id: role, label: "Ask the captain to give them a real role — twelfth player, scorer, or opening the next match — and tell them why." }
+          - { id: talk, label: "Sit with them afterwards and ask how they're feeling about it." }
+          - { id: insist, label: "Insist they're picked for this match, whatever the captain thinks." }
+          - { id: nothing, label: "Say nothing — selection is the captain's job." }
+        answer: [role, talk, insist, nothing]
+        tags: [campus, inclusion, sjt]

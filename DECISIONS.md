@@ -1,0 +1,155 @@
+# Decisions & assumptions (v1 prototype)
+
+Per PRD §0.4, where the PRD was ambiguous I picked the simplest option that keeps P2 items
+possible, and list it here. Items marked **STUB** are deliberately not production-ready.
+
+## Scope for this build
+
+The brief for this iteration was *"don't worry much about auth, DB or proctoring — show the
+creativeness of the admission process."* So:
+
+- **STUB — Auth.** No OTP or invite links. The lobby asks for a name; a random candidate code
+  is generated. Production: single-use link + OTP, one active session (PRD §8).
+- **STUB — Database.** Attempts live in the browser's IndexedDB (`src/lib/attempt.ts`). The
+  store is written as an append-style `update()` so it can be replayed to a server API, with
+  IndexedDB becoming the offline queue. The PRD data model (Candidate, Attempt, SectionAttempt,
+  Response, GameLog, …) maps onto `Attempt` + `Response` + the Mela decision log.
+- **STUB — Timers are client-stamped.** The section start time is stored with the attempt and
+  the clock is always *derived* from it (never a ticking counter), so reloads, crashes and
+  offline periods keep the right time. In production the server stamps the start time.
+- **Integrity (lightweight).** Built: paste/drop blocked and logged in written answers; tab
+  hidden/visible, offline/online and resume events logged; keystroke summary (keystrokes, bulk
+  inserts, active time) kept as a *signal*. Not built: fullscreen enforcement, OTP, one-session
+  lock, webcam. Integrity signals are shown only in the admissions/Stage 3 panel of the
+  evaluator preview, never to first-round raters, and never change a score.
+- **STUB — Evaluator portal.** `/[program]/review` scores the one attempt on this device:
+  blinded response, rubric with descriptors/anchors/"do not score" notes, auto-scores, layout
+  auto-checks, Mela decision evidence, live weighted composite, "suspected non-original" flag.
+  Not built: item-wise queue across candidates, double rating + third-rater escalation,
+  calibration mode.
+- **Not built — Admin portal** (CSV import, windows, live monitoring, results export).
+- **Demo tools** (timer jump, reload) are visible in the runner for reviewers; remove for live use.
+
+## Content & engine
+
+- **Content in YAML**, validated by zod (`src/content/schema.ts`). `npm run content:check` is
+  the v1 seed step. It also flags stray keys, because an unquoted comma in a YAML flow mapping
+  silently truncates text (it caught 12 such truncations during the build).
+- **Stimulus groups.** `stimulus_passage` is a group type: a passage/case/brief plus its items.
+  The same mechanism carries D4 design briefs, so a pooled brief draws its three items together.
+- **Pools** are drawn with a seeded shuffle keyed by `(candidate seed, pool id)`; the seed is
+  stored, so any paper can be rebuilt exactly. Ranking options are shown in a per-candidate
+  shuffled order so the YAML order (often the key) is never a hint.
+- **"Draw or photograph" (D2/D4)** is one `drawing_canvas` item with `allow_photo: true`; the
+  candidate can switch modes and both responses are kept.
+- **Early finish.** Candidates can finish a section from any question (with a confirmation that
+  lists unanswered items). Locked-sequence sections (P3, B3) move forward only.
+- **Untouched ranking = no answer**, so the default order can't earn marks by accident.
+
+## B.Design D2 — Design for People (replaces Observation Drawing)
+
+- Goal: test **empathy**, not product-management skill. Each case gives a concrete person in a
+  concrete moment and asks candidates to see the app through their eyes — no UX vocabulary needed.
+- Two pooled cases (Kamla-ji on a grocery app; Farida, one-handed, on a food app). Each has six
+  tasks: pin-and-annotate (new `hotspot` item type), a "works against them" multi-select (dark
+  patterns), ranking fixes *for that person*, a says/thinks/feels/does map (Farida's case switches
+  to the delivery rider's side), a phone-frame redesign sketch, and writing the app's message.
+- **The apps are made up** ("Jaldi", "Thali Express") so the test doesn't copy real brands' designs.
+  Real screenshots (e.g. Zomato, Blinkit) can be dropped in via YAML; get permission first and keep
+  the problem zones in sync.
+- Hotspot **zones are evidence for evaluators, never the score** — a sharp, well-reasoned pin on
+  something not in the list can still score 4. Rubrics reward perspective-taking, specific
+  observation and respect for the person (blaming the user scores low).
+- Multi-select and ranking keys are placeholders for faculty to agree.
+- **B.Design has no practice step** (by request). The lobby skips "Practice" for any programme
+  with an empty `practice:` list; B.Psych and BBA-E keep theirs. The observation-scene SVGs remain
+  in `public/media/bdes/` if that section is ever wanted back.
+
+## C1 Contribution — the shared section
+
+- **One file, three programmes.** `content/common/contribution.yaml` is pulled in by each
+  programme with `- { include: contribution, weight: 10 }`. Edit once, all three tests change.
+  A programme can override only the weight. (This is also the mechanism the PRD's P2 "common
+  reasoning section" would use.)
+- **Weights rebalanced** so each programme still totals 100: existing sections scaled to 90,
+  C1 takes 10. Change `weight:` in the include to give it more or less.
+- **One section, two labelled parts** (country, then campus), since they're judged together and
+  15 minutes is enough for both. Splitting them into two sections is a content-only change:
+  copy the file, keep one part in each, and include both.
+- **Why it's built this way.** Asking "are you patriotic?" measures how well someone performs an
+  answer. So the section asks for a *specific* problem, *what they have actually done* (however
+  small), and a concrete first-90-days campus plan. The rubrics say plainly that an honest
+  "nothing yet, and here's what stopped me" beats an invented achievement, that the cause they
+  pick is never scored, and that prompts stay away from party politics, religion and region.
+- **Five-hour allocation** is a new `allocation` item type (budget sliders that must add up). It
+  is **not scored** — stated enthusiasm is cheap, but where someone spends a limited budget is a
+  useful signal for clubs, clans and the Stage 3 conversation. It's shown to evaluators as a bar
+  list marked "not scored".
+- **Two SJT rankings** (auto-scored) cover following through on a commitment when it's
+  inconvenient, and including someone who is being left out — placeholder keys for faculty.
+- Section order: last for B.Design and B.Psych; for BBA-E it sits before the optional, unscored B5.
+
+## Scoring
+
+- **Rubrics** are 1–4; an item's rubric score is `(mean − 1) / 3` of its max. Composite = Σ
+  (section weight × section %) over sections with scored marks; it is labelled *provisional*
+  while rubric marks are pending.
+- **mcq_multi** partial credit: (correct picks − wrong picks) / number of correct, floored at 0.
+- **Ranking** uses Spearman footrule distance normalised by the worst case (full reversal).
+- **Allocation items** are unscored by design (profile signal only).
+- **Hotspot items** are rubric-scored; zone hits are shown as evidence only.
+- **D1 Best Work** is scored lightly with its rubric (PRD open question: scored vs Stage-3-only).
+  Flip `scored` in `bdes.yaml` to change it.
+- **B3 reflection counts toward B4** via `counts_toward: B4`, as the PRD specifies.
+- **Stroop reaction times are never scored**; the P3 task item is `scored: false`.
+- **B5** is optional, weight 0, unscored.
+
+## Mela Market
+
+- Demand model (documented in `content/games/mela-market.yaml` and `src/engine/mela/sim.ts`):
+  linear price response `1 + e·(1 − p/ref)` (a constant-elasticity curve made some goods'
+  optimal price infinite), promotion lift, competitor price ratio, event multipliers, ±8% noise.
+- **Fairness:** noise is keyed only by (window seed, day, location), so outcomes depend only on
+  decisions; unit tests assert same seed + decisions ⇒ identical state.
+- **Stall auction:** candidate bids on one spot; bots bid fixed amounts; highest bid wins at first
+  price; a losing candidate gets the unclaimed spot at its reserve.
+- **Events:** day 1 opening, day 2 rain, day 3 competitor −20% + water-rights auction, day 4
+  cricket star at the rides + supplier "15% off for double stock" (a perishables trap).
+- **Decision quality** = weighted pass rate over 7 checks (stall bid ≤ forecast value, adjusted
+  for rain, perishable waste ≤ 20%, sensible response to price cut, never below cost, water bid ≤
+  value, judged the bulk deal). "Value" uses only information available at bid time.
+- **STUB — Outcome percentile** is computed against a deterministic simulated cohort of 300
+  plausible players. Production: percentile across real submissions in the test window. Tuning so
+  outcomes aren't dominated by the stall auction remains a PRD open question (`npm run mela:report`).
+
+## Brand
+
+- **Logo** extracted *unmodified* (vector paths, original colours) from the guidelines PDF into
+  `public/brand/`; never retyped. Min 200 px on screen, placed on light surfaces only (no official
+  white-reversed file was available, so the logo never sits on red).
+- **Crest imagery / watermark** follow ch. 5: crest at 20% white as watermark; crest shape as an
+  image frame. The frame silhouette is the official crest paths stroked to close the "r" gap.
+- **Type:** Adobe Garamond isn't licensable as a web font here → **EB Garamond** for headlines
+  (tracked −0.02em as the guide asks), **Montserrat** for UI/body.
+- **Colour:** Rishihood Red, Narangi, cream/sand/peach, plum/wine, navy/blue. Programme accents:
+  B.Design = Narangi (School of Creativity), B.Psych = Wine, BBA-E = Navy (School of Entrepreneurship).
+- **Accessibility vs brand:** Narangi `#CC5C2F` is 3.9:1 on paper — below WCAG AA for text. It is
+  used for large decorative fills; text and white-on-accent buttons use a deeper narangi
+  `#B8501F`/`#A94A1D`. Muted grey was darkened to `#666D70` for AA.
+- **Patterns:** the lattice background is a CSS approximation, colour-on-colour and subtle, as the
+  guide requires; swap in the official Indic/campus pattern files when available.
+- **Charts** use a brand-adjacent palette validated for colour-blind separation and contrast.
+  Test charts deliberately have no hover tooltips — reading values off the axis is being assessed —
+  but every chart has a "Show as table" view.
+
+## Other
+
+- **Photo handoff** uses an in-memory queue (`src/lib/handoff-store.ts`) and the machine's LAN IP
+  for the QR code; Next's `allowedDevOrigins` is set to the LAN addresses. Production: signed,
+  expiring S3 upload URLs tied to the session. Images are compressed in the browser (≤1600 px JPEG).
+- **i18n:** UI strings go through `t()` (`locales/en.json`); test content is localised in YAML.
+- **Consent copy** is placeholder, marked "pending legal review (DPDP Act 2023)", with a
+  parent/guardian confirmation for under-18s.
+- **Illustrations** (scenes, gestalt figures, posters, comic, briefs) are original SVGs made for
+  this prototype — placeholder quality per PRD §0.5.
+- The landing page is statically rendered at build time; programme pages read content per request.

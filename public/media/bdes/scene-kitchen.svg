@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0" stop-color="#F7EDDC"/>
+      <stop offset="0.55" stop-color="#E9DAC2"/>
+      <stop offset="1" stop-color="#CDBB9F"/>
+    </linearGradient>
+    <radialGradient id="window" cx="0" cy="0.25" r="0.9">
+      <stop offset="0" stop-color="#FFFBEF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFFBEF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6F7478"/>
+      <stop offset="0.12" stop-color="#F4F6F7"/>
+      <stop offset="0.22" stop-color="#C9CED1"/>
+      <stop offset="0.55" stop-color="#9AA0A4"/>
+      <stop offset="0.8" stop-color="#6B7074"/>
+      <stop offset="1" stop-color="#474B4E"/>
+    </linearGradient>
+    <linearGradient id="steelLid" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8A8F93"/>
+      <stop offset="0.2" stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#B7BCBF"/>
+      <stop offset="1" stop-color="#5C6064"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7A5518"/>
+      <stop offset="0.18" stop-color="#FCE3A1"/>
+      <stop offset="0.35" stop-color="#D9A441"/>
+      <stop offset="0.75" stop-color="#9C6D1E"/>
+      <stop offset="1" stop-color="#5E3F0E"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B07A48"/>
+      <stop offset="0.35" stop-color="#8E5C31"/>
+      <stop offset="1" stop-color="#5B3719"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#D8EEE6" stop-opacity="0.55"/>
+      <stop offset="0.15" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="0.3" stop-color="#CFE6DD" stop-opacity="0.35"/>
+      <stop offset="0.85" stop-color="#9EC3B6" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#6E9A8B" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#BFDCCF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#7FA999" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="shadow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3A2A1C" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#3A2A1C" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bakelite" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A4A4A"/>
+      <stop offset="0.3" stop-color="#1C1C1C"/>
+      <stop offset="1" stop-color="#0C0C0C"/>
+    </linearGradient>
+    <radialGradient id="leaf" cx="0.3" cy="0.3" r="0.9">
+      <stop offset="0" stop-color="#A8D07A"/>
+      <stop offset="0.5" stop-color="#5E9B3C"/>
+      <stop offset="1" stop-color="#2F5E22"/>
+    </radialGradient>
+    <pattern id="tiles" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="80" height="80" fill="none" stroke="#C9B89C" stroke-width="1.5" opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <!-- wall, tiles, window light from the left -->
+  <rect width="800" height="600" fill="url(#wall)"/>
+  <rect width="800" height="360" fill="url(#tiles)"/>
+  <rect width="800" height="600" fill="url(#window)"/>
+
+  <!-- shelf plank -->
+  <rect x="0" y="392" width="800" height="26" fill="url(#wood)"/>
+  <rect x="0" y="392" width="800" height="4" fill="#D3A06C" opacity="0.8"/>
+  <rect x="0" y="418" width="800" height="182" fill="#6E5A45"/>
+  <rect x="0" y="418" width="800" height="40" fill="#3E2F22" opacity="0.5"/>
+  <!-- shelf bracket -->
+  <path d="M110 418 v70 h16 v-54 h40 v-16z" fill="#3B3B3B"/>
+  <path d="M640 418 v70 h16 v-54 h40 v-16z" fill="#3B3B3B"/>
+
+  <!-- cast shadows (light from upper left, fall to the right) -->
+  <path d="M250 392 L400 392 L470 330 L330 330 Z" fill="url(#shadow)" opacity="0.55"/>
+  <path d="M455 392 L520 392 L570 350 L505 350 Z" fill="url(#shadow)" opacity="0.5"/>
+  <path d="M575 392 L665 392 L720 360 L630 360 Z" fill="url(#shadow)" opacity="0.45"/>
+  <path d="M110 392 L205 392 L250 340 L160 340 Z" fill="url(#shadow)" opacity="0.4"/>
+
+  <!-- money plant in a glass jar -->
+  <g>
+    <path d="M118 252 Q116 246 124 244 L194 244 Q202 246 200 252 L204 380 Q204 394 190 394 L128 394 Q114 394 114 380 Z" fill="url(#glass)" stroke="#8FB3A6" stroke-width="2"/>
+    <path d="M120 300 L198 300 L202 380 Q202 392 190 392 L128 392 Q116 392 116 380 Z" fill="url(#water)"/>
+    <ellipse cx="159" cy="300" rx="39" ry="5" fill="#E6F4EE" opacity="0.7"/>
+    <path d="M150 390 q-6 -40 4 -80 M162 388 q10 -46 -2 -90 M170 390 q-2 -30 10 -70" stroke="#E7E0C4" stroke-width="2" fill="none" opacity="0.8"/>
+    <path d="M126 256 L130 380" stroke="#FFFFFF" stroke-width="5" opacity="0.7" stroke-linecap="round"/>
+    <!-- stems -->
+    <path d="M156 250 C 150 200, 120 170, 90 150 C 70 138, 60 150, 52 176" stroke="#4F7A2E" stroke-width="4" fill="none"/>
+    <path d="M164 250 C 170 200, 200 180, 222 140 C 234 118, 250 110, 268 118" stroke="#4F7A2E" stroke-width="4" fill="none"/>
+    <path d="M150 250 C 120 260, 90 300, 78 360 C 72 390, 70 430, 80 470" stroke="#4F7A2E" stroke-width="4" fill="none"/>
+    <!-- heart-shaped leaves -->
+    <g fill="url(#leaf)" stroke="#2F5E22" stroke-width="1.2">
+      <path d="M90 150 c -22 -20 -44 4 -30 22 c 8 10 26 14 30 -22 z"/>
+      <path d="M52 176 c -18 -6 -30 16 -14 30 c 10 6 20 -6 14 -30 z"/>
+      <path d="M125 178 c -8 -26 -38 -18 -34 4 c 4 14 26 18 34 -4 z"/>
+      <path d="M222 140 c 6 -26 38 -20 34 2 c -4 14 -26 20 -34 -2 z"/>
+      <path d="M268 118 c 14 -18 40 0 26 18 c -8 10 -22 6 -26 -18 z"/>
+      <path d="M196 196 c 16 -18 40 2 26 20 c -10 10 -24 4 -26 -20 z"/>
+      <path d="M100 290 c -24 -14 -40 12 -24 26 c 10 8 24 0 24 -26 z"/>
+      <path d="M78 360 c -24 -6 -30 24 -12 32 c 12 4 20 -8 12 -32 z"/>
+      <path d="M80 470 c -20 4 -16 34 4 32 c 12 -2 14 -16 -4 -32 z"/>
+      <path d="M146 214 c -20 -12 -38 12 -22 24 c 10 6 22 0 22 -24 z"/>
+    </g>
+    <g stroke="#CBE4A8" stroke-width="1" fill="none" opacity="0.8">
+      <path d="M72 158 q8 4 16 -6"/><path d="M238 136 q6 -2 12 -12"/><path d="M84 300 q6 2 14 -8"/>
+    </g>
+  </g>
+
+  <!-- pressure cooker -->
+  <g>
+    <ellipse cx="330" cy="390" rx="92" ry="12" fill="#2C241B" opacity="0.35"/>
+    <path d="M240 236 L420 236 L424 376 Q424 392 404 392 L256 392 Q236 392 236 376 Z" fill="url(#steel)"/>
+    <path d="M240 236 L420 236 L420 250 L240 250 Z" fill="#5F6468" opacity="0.5"/>
+    <!-- rolled rim -->
+    <rect x="232" y="224" width="196" height="16" rx="8" fill="url(#steelLid)"/>
+    <!-- lid dome -->
+    <path d="M248 224 Q330 176 412 224 Z" fill="url(#steelLid)"/>
+    <path d="M262 220 Q300 196 330 194" stroke="#FFFFFF" stroke-width="4" fill="none" opacity="0.8" stroke-linecap="round"/>
+    <!-- whistle -->
+    <rect x="322" y="170" width="16" height="22" rx="3" fill="url(#bakelite)"/>
+    <rect x="318" y="164" width="24" height="10" rx="4" fill="#2A2A2A"/>
+    <rect x="326" y="167" width="4" height="4" fill="#666" />
+    <!-- lid handle -->
+    <path d="M300 206 L540 190 Q560 188 560 202 L558 214 Q556 222 540 222 L304 222 Z" fill="url(#bakelite)"/>
+    <path d="M320 208 L536 195" stroke="#6C6C6C" stroke-width="2" opacity="0.7"/>
+    <!-- body handle -->
+    <path d="M300 250 L548 250 Q566 250 566 264 L566 272 Q566 284 548 284 L300 284 Z" fill="url(#bakelite)"/>
+    <path d="M316 256 L544 256" stroke="#6C6C6C" stroke-width="2" opacity="0.6"/>
+    <circle cx="552" cy="266" r="4" fill="#555"/>
+    <!-- reflections of the plant and window on steel -->
+    <path d="M258 262 Q262 320 258 378" stroke="#FFFFFF" stroke-width="10" opacity="0.55" stroke-linecap="round"/>
+    <path d="M280 270 Q284 320 280 370" stroke="#A7C98A" stroke-width="5" opacity="0.35" stroke-linecap="round"/>
+    <path d="M396 250 Q400 320 398 386" stroke="#2F3336" stroke-width="10" opacity="0.35" stroke-linecap="round"/>
+    <!-- small dent -->
+    <ellipse cx="360" cy="340" rx="14" ry="8" fill="#5A5F63" opacity="0.4"/>
+    <ellipse cx="356" cy="337" rx="8" ry="4" fill="#FFFFFF" opacity="0.4"/>
+  </g>
+
+  <!-- stacked steel tumblers -->
+  <g>
+    <ellipse cx="488" cy="391" rx="40" ry="6" fill="#2C241B" opacity="0.3"/>
+    <path d="M452 312 L524 312 L518 390 L458 390 Z" fill="url(#steel)"/>
+    <path d="M450 290 L526 290 L520 330 L456 330 Z" fill="url(#steel)"/>
+    <path d="M448 268 L528 268 L522 308 L454 308 Z" fill="url(#steel)"/>
+    <ellipse cx="488" cy="268" rx="40" ry="7" fill="#3F4447"/>
+    <ellipse cx="488" cy="268" rx="40" ry="7" fill="none" stroke="#EDEFF0" stroke-width="2.5"/>
+    <path d="M454 310 Q488 316 522 310" stroke="#EDEFF0" stroke-width="2" fill="none"/>
+    <path d="M456 332 Q488 338 520 332" stroke="#EDEFF0" stroke-width="2" fill="none"/>
+    <path d="M462 276 L466 384" stroke="#FFFFFF" stroke-width="5" opacity="0.7" stroke-linecap="round"/>
+  </g>
+
+  <!-- brass lota -->
+  <g>
+    <ellipse cx="620" cy="391" rx="52" ry="7" fill="#2C241B" opacity="0.35"/>
+    <path d="M598 262 L642 262 L638 282 Q690 300 680 350 Q670 392 620 392 Q570 392 560 350 Q550 300 602 282 Z" fill="url(#brass)"/>
+    <ellipse cx="620" cy="262" rx="30" ry="7" fill="#5E3F0E"/>
+    <ellipse cx="620" cy="262" rx="30" ry="7" fill="none" stroke="#FCE3A1" stroke-width="2.5"/>
+    <path d="M594 262 Q590 254 596 250 L644 250 Q650 254 646 262" fill="url(#brass)"/>
+    <path d="M572 318 Q570 346 584 370" stroke="#FFF4D1" stroke-width="7" opacity="0.75" fill="none" stroke-linecap="round"/>
+    <path d="M565 336 Q620 350 676 336" stroke="#6E4A12" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M567 346 Q620 360 674 346" stroke="#6E4A12" stroke-width="1.5" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- a matchbox leaning against the lota -->
+  <g transform="rotate(-8 712 380)">
+    <rect x="690" y="362" width="46" height="30" fill="#E3B23C" stroke="#8C6A14" stroke-width="1.5"/>
+    <rect x="690" y="362" width="46" height="8" fill="#B8322A"/>
+    <circle cx="713" cy="380" r="6" fill="#B8322A"/>
+  </g>
+</svg>

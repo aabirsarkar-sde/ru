@@ -1,0 +1,471 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# B.Psych — Stage 2 aptitude test
+# PLACEHOLDER CONTENT (PRD §0.5). SJT keys (P5) must be agreed by 3+ faculty and
+# scenario wording reviewed for sensitivity before content lock.
+# ─────────────────────────────────────────────────────────────────────────────
+id: bpsych
+name: B.Psych
+full_name: Bachelor of Psychology
+accent: wine
+duration_min: 115
+traits: [Scientific reasoning, Data literacy, Observation vs inference, Empathy & ethics, Curiosity]
+pitch: >-
+  Read a real-style study with a sceptical eye, try a classic experiment on
+  yourself, and show how you think about people — carefully and kindly.
+window: { id: w-2026-oct-a, name: "October window A", seed: "RU-2026-OCT-A" }
+
+sections:
+  - id: P1
+    code: P1
+    title: Reading Research
+    duration_min: 25
+    weight: 18
+    traits: [Scientific reasoning]
+    summary: A short study summary and seven questions about what it really shows.
+    intro: >-
+      You'll read a plain-language summary of a study, then answer questions about
+      what it measured and what it can — and can't — tell us. The passage stays
+      on screen the whole time.
+    items:
+      - type: stimulus_passage
+        id: p1_sleep_study
+        eyebrow: Study summary
+        title: Late-night screens and sleep
+        body: |
+          Researchers surveyed **600 students aged 14–17** in two private schools in Delhi. Each student filled in a one-time online questionnaire. It asked how many hours they used their phone after 9 pm on a typical school night, what time they usually fell asleep, and what time they woke up. Students also rated how tired they felt in the morning on a scale from 1 (not at all) to 5 (extremely).
+
+          Students were split into two groups: "heavy late-night users", who reported more than 3 hours of phone use after 9 pm, and everyone else. The 212 heavy users reported sleeping **6 hours 10 minutes** a night on average; the other 388 students reported **6 hours 50 minutes** — a difference of about 40 minutes. Heavy users also rated themselves as more tired in the morning (3.8 compared with 3.1).
+
+          Heavy users were more likely to be in Class 11 or 12 (61% compared with 44%) and more likely to say they attended tuition classes in the evening (48% compared with 30%).
+
+          In their report the researchers wrote that "late-night phone use appears to be robbing teenagers of sleep", and recommended that schools advise parents to collect phones at 9 pm. A news website covered the study under the headline: **"Phones after 9 pm cost teens 40 minutes of sleep, study proves."**
+
+          The researchers listed some limitations. Sleep times were reported by the students, not measured. And because the survey was done only once, it could not show whether phone use came before or after changes in sleep.
+        items:
+          - id: p1_measured
+            type: mcq_multi
+            prompt: What did the study actually measure? Select all that apply.
+            max_score: 2
+            options:
+              - { id: phone, label: How much students said they used their phone after 9 pm }
+              - { id: sleep, label: When students said they fell asleep and woke up }
+              - { id: tracked, label: "How long students slept, recorded by a sleep tracker" }
+              - { id: tired, label: How tired students said they felt in the morning }
+              - { id: marks, label: Students' exam results }
+            answer: [phone, sleep, tired]
+            tags: [measurement, easy]
+          - id: p1_cause
+            type: mcq_single
+            prompt: Does this study show that phone use *causes* less sleep?
+            options:
+              - { id: a, label: Yes — a 40-minute difference is large }
+              - { id: b, label: Yes — 600 students is a big enough sample to prove it }
+              - { id: c, label: "No — it shows the two go together, but not which causes which, or whether something else causes both" }
+              - { id: d, label: No — because the difference is too small to matter }
+            answer: c
+            tags: [causation, medium]
+          - id: p1_confound
+            type: mcq_single
+            prompt: Which is the best example of a possible *confounding factor* — something that could affect both phone use and sleep?
+            options:
+              - { id: a, label: Heavy users were more often in Class 11–12 and attending evening tuition }
+              - { id: b, label: The schools were in Delhi }
+              - { id: c, label: The news headline exaggerated the finding }
+              - { id: d, label: Tiredness was rated on a scale of 1 to 5 }
+            answer: a
+            tags: [confounding, medium]
+          - id: p1_reverse
+            type: mcq_single
+            prompt: Which alternative explanation can this study *not* rule out?
+            options:
+              - { id: a, label: Students who already struggle to fall asleep pick up their phones because they are awake anyway }
+              - { id: b, label: Phone screens give off blue light }
+              - { id: c, label: Teenagers need about nine hours of sleep }
+              - { id: d, label: The survey was completed online }
+            answer: a
+            tags: [reverse-causation, hard]
+          - id: p1_generalise
+            type: mcq_single
+            prompt: Would this result likely hold for students in rural government schools?
+            options:
+              - { id: a, label: "Yes — 600 is a large sample, so it applies to all teenagers" }
+              - { id: b, label: "We can't be sure — the students came from two private urban schools, and others may differ in phone access, schedules and commute" }
+              - { id: c, label: "No — rural students don't use phones at night" }
+              - { id: d, label: "Yes — teenagers' sleep works the same way everywhere" }
+            answer: b
+            tags: [generalisability, medium]
+          - id: p1_headline
+            type: mcq_single
+            prompt: What is the main problem with the news headline?
+            options:
+              - { id: a, label: It should say 40 minutes more precisely }
+              - { id: b, label: "\"Proves\" overstates a one-time survey that can only show an association" }
+              - { id: c, label: It doesn't mention Delhi }
+              - { id: d, label: Nothing — it accurately reports the finding }
+            answer: b
+            tags: [communication, easy]
+          - id: p1_design
+            type: short_text
+            prompt: Describe a better study to find out whether late-night phone use really reduces sleep.
+            help: Think about what you'd compare, how you'd measure sleep, and over what time.
+            word_limit: 60
+            rubric_id: p_scientific
+            max_score: 4
+            tags: [study-design]
+
+  - id: P2
+    code: P2
+    title: Data Interpretation
+    duration_min: 15
+    weight: 14
+    traits: [Data literacy]
+    summary: Charts and tables from psychology-style data. Class 10 maths only.
+    intro: >-
+      Eight questions on charts and small tables. You'll only need Class 10
+      maths — averages, percentages, differences. Look carefully: one chart is
+      misleading.
+    items:
+      - type: stimulus_passage
+        id: p2_mindfulness
+        eyebrow: Data
+        title: A mindfulness workshop before exams
+        body: >-
+          Sixty Class 12 students volunteered to help test a four-week mindfulness
+          workshop. Half were chosen at random to attend the workshop; the other
+          half (the control group) carried on as usual. Everyone completed an
+          exam-anxiety questionnaire (scored 0–50, higher = more anxious) before
+          and after the four weeks.
+        media:
+          - kind: chart
+            chart:
+              kind: grouped_bar
+              title: Average exam-anxiety score (0–50)
+              categories: [Before, After]
+              series:
+                - { name: Workshop group, values: [32, 24] }
+                - { name: Control group, values: [31, 27] }
+              y_min: 0
+              y_max: 40
+              y_label: Anxiety score
+        items:
+          - id: p2_drop
+            type: mcq_single
+            prompt: By how many points did the workshop group's average score fall?
+            options:
+              - { id: a, label: "4" }
+              - { id: b, label: "8" }
+              - { id: c, label: "24" }
+              - { id: d, label: "25%" }
+            answer: b
+            tags: [read-chart, easy]
+          - id: p2_control
+            type: mcq_single
+            prompt: Why is the control group useful here?
+            options:
+              - { id: a, label: It doubles the sample size }
+              - { id: b, label: "It shows how much scores would have changed anyway — for example as students got used to exam season — so we can see the workshop's extra effect" }
+              - { id: c, label: It proves the workshop works }
+              - { id: d, label: It isn't useful because those students didn't get the workshop }
+            answer: b
+            tags: [control-group, medium]
+          - id: p2_effect
+            type: mcq_single
+            prompt: Using the control group, what is the best estimate of the workshop's own effect?
+            options:
+              - { id: a, label: About 8 points lower anxiety }
+              - { id: b, label: About 4 points lower anxiety }
+              - { id: c, label: About 1 point lower anxiety }
+              - { id: d, label: It can't be estimated }
+            answer: b
+            tags: [difference-in-differences, hard]
+      - type: stimulus_passage
+        id: p2_sleep_chart
+        eyebrow: Data
+        title: A poster in the school corridor
+        body: >-
+          A student made this chart for a wellbeing poster, with the caption
+          "Class 12 students are barely sleeping!"
+        media:
+          - kind: chart
+            chart:
+              kind: bar
+              title: Average hours of sleep on school nights
+              categories: [Class 10, Class 12]
+              series:
+                - { name: Hours, values: [7.2, 6.9] }
+              y_min: 6.8
+              y_max: 7.3
+              y_label: Hours
+        items:
+          - id: p2_truncated
+            type: mcq_single
+            prompt: What is misleading about this chart?
+            options:
+              - { id: a, label: "The vertical axis starts at 6.8, so a 0.3-hour difference looks enormous" }
+              - { id: b, label: It should be a pie chart }
+              - { id: c, label: It doesn't show Class 11 }
+              - { id: d, label: Nothing — Class 12 students sleep far less }
+            answer: a
+            tags: [misleading-chart, medium]
+      - type: stimulus_passage
+        id: p2_social_table
+        eyebrow: Data
+        title: Social media use in a small group
+        body: Five friends tracked their daily social-media use for a week.
+        media:
+          - kind: table
+            table:
+              title: Average hours per day
+              columns: [Student, Hours per day]
+              rows: [[Aarav, 2], [Bhavna, 3], [Chetan, 3], [Diya, 4], [Eshan, 8]]
+        items:
+          - id: p2_mean
+            type: mcq_single
+            prompt: What is the mean (average) number of hours?
+            options:
+              - { id: a, label: "3" }
+              - { id: b, label: "4" }
+              - { id: c, label: "5" }
+              - { id: d, label: "8" }
+            answer: b
+            tags: [mean, easy]
+          - id: p2_median
+            type: mcq_single
+            prompt: Which number better describes a *typical* student in this group, and why?
+            options:
+              - { id: a, label: "The mean (4), because it uses every value" }
+              - { id: b, label: "The median (3), because one person's 8 hours pulls the mean up" }
+              - { id: c, label: "The highest value (8), because that is the concern" }
+              - { id: d, label: "They're equally good here" }
+            answer: b
+            tags: [median, medium]
+      - id: p2_percent
+        type: mcq_single
+        prompt: >-
+          At School A, 40 of 200 students said they had spoken to a counsellor
+          this year. At School B, 30 of 100 had. Which statement is correct?
+        options:
+          - { id: a, label: "School A — more students spoke to a counsellor, so the rate is higher" }
+          - { id: b, label: "School B has the higher rate: 30% compared with 20%" }
+          - { id: c, label: The rates are the same }
+          - { id: d, label: You can't compare schools of different sizes }
+        answer: b
+        tags: [percentages, easy]
+      - id: p2_week
+        type: mcq_single
+        prompt: A class recorded their average sleep across one week. What pattern does the chart show?
+        media:
+          - kind: chart
+            chart:
+              kind: line
+              title: Average hours of sleep
+              categories: [Mon, Tue, Wed, Thu, Fri, Sat, Sun]
+              series:
+                - { name: Hours, values: [6.6, 6.5, 6.4, 6.3, 6.5, 8.1, 8.4] }
+              y_min: 0
+              y_max: 10
+              y_label: Hours
+        options:
+          - { id: a, label: Sleep rises steadily through the week }
+          - { id: b, label: "Weeknight sleep drifts down, then jumps at the weekend — a sign of catching up" }
+          - { id: c, label: Sleep is the same every day }
+          - { id: d, label: Students sleep least at the weekend }
+        answer: b
+        tags: [trend, easy]
+
+  - id: P3
+    code: P3
+    title: Experience & Explain
+    duration_min: 15
+    weight: 13
+    traits: [Curiosity, Scientific reasoning]
+    locked_sequence: true
+    summary: Try a classic two-minute experiment on yourself, then explain what happened.
+    intro: >-
+      You'll try a classic experiment for about two minutes: coloured words
+      appear, and you name the colour of the ink. Afterwards you'll see your own
+      results and explain them. How fast you are is never scored — only your
+      explanation.
+    items:
+      - id: p3_stroop
+        type: interactive_task
+        module: stroop
+        config: stroop.yaml
+        prompt: Name the ink colour, not the word.
+        scored: false
+        locked_sequence: true
+        tags: [experience]
+      - id: p3_explain
+        type: short_text
+        prompt: What did you notice about your own responses? What might this suggest about how the mind processes information?
+        word_limit: 100
+        rubric_id: p3_stroop
+        max_score: 4
+        tags: [explanation]
+
+  - id: P4
+    code: P4
+    title: Observation vs Inference
+    duration_min: 15
+    weight: 14
+    traits: [Observation vs inference, Empathy & ethics]
+    summary: A wordless comic strip. What did you see, and what might it mean?
+    intro: >-
+      You'll see a short comic with no words. First write only what you can
+      directly see. Then write what each person might be thinking or feeling —
+      and what in the pictures makes you think so.
+    items:
+      - id: p4_canteen
+        type: short_text
+        prompt: Look carefully at the five panels, then answer in the two boxes.
+        media:
+          - kind: strip
+            caption: Read left to right.
+            panels:
+              - { src: /media/bpsych/canteen-1.svg, alt: "Panel 1: A student sits alone at a canteen table with a tray and a phone." }
+              - { src: /media/bpsych/canteen-2.svg, alt: "Panel 2: At the next table, a group of four students are laughing together; one is pointing at a phone." }
+              - { src: /media/bpsych/canteen-3.svg, alt: "Panel 3: The student alone glances over at the group; their food is untouched." }
+              - { src: /media/bpsych/canteen-4.svg, alt: "Panel 4: One student from the group looks towards the student sitting alone." }
+              - { src: /media/bpsych/canteen-5.svg, alt: "Panel 5: The student who was alone walks out of the canteen carrying their bag; the tray is left on the table." }
+        fields:
+          - { id: observe, label: What did you directly observe?, word_limit: 60, placeholder: "Only what can be seen: who is where, what they are doing…" }
+          - { id: infer, label: "What might each person be thinking or feeling, and what in the image makes you think so?", word_limit: 60, placeholder: "Offer more than one possibility…" }
+        rubric_id: p4_observation
+        max_score: 4
+        tags: [observation, inference, empathy]
+
+  - id: P5
+    code: P5
+    title: Situational Judgment
+    duration_min: 20
+    weight: 18
+    traits: [Empathy & ethics]
+    summary: Six everyday situations. Rank four responses from most to least appropriate.
+    intro: >-
+      Six situations you could face as a student. For each, drag the four
+      responses into order, from most to least appropriate. There's rarely a
+      perfect answer — we're interested in your judgment. You can also use the
+      arrow buttons or keyboard to reorder.
+    items:
+      - id: p5_secret
+        type: ranking
+        prompt: A close friend tells you they've felt low for several weeks and asks you to keep it a secret.
+        max_score: 2
+        options:
+          - { id: a, label: "Listen, tell them you care, and gently encourage them to talk to a counsellor or trusted adult — offering to go with them." }
+          - { id: b, label: "Promise to keep it secret no matter what, so they keep trusting you." }
+          - { id: c, label: "Reassure them that everyone feels low sometimes and they'll be fine soon." }
+          - { id: d, label: "Tell them you want to help, and be honest that if you're ever worried about their safety you'll need to involve an adult." }
+        answer: [a, d, c, b]
+        tags: [sjt, confidentiality]
+      - id: p5_language
+        type: ranking
+        prompt: During a group project, one member's ideas keep getting ignored because they speak less English.
+        max_score: 2
+        options:
+          - { id: a, label: "Suggest the group lets everyone share ideas in the language they're most comfortable in, and offer to help translate." }
+          - { id: b, label: "Say nothing — it isn't your place." }
+          - { id: c, label: "After the meeting, ask them about their idea and raise it at the next meeting, crediting them." }
+          - { id: d, label: "Tell the group leader, in front of everyone, that they're being unfair." }
+        answer: [a, c, d, b]
+        tags: [sjt, inclusion]
+      - id: p5_survey
+        type: ranking
+        prompt: You're volunteering on a community survey and notice a teammate filling in forms without interviewing anyone.
+        max_score: 2
+        options:
+          - { id: a, label: "Talk to your teammate privately, explain why made-up answers harm the survey, and ask them to redo those forms." }
+          - { id: b, label: "Report it to the survey supervisor straight away." }
+          - { id: c, label: "Ignore it — it's their responsibility, not yours." }
+          - { id: d, label: "Fill in a few forms yourself too, so the team finishes on time." }
+        answer: [a, b, c, d]
+        tags: [sjt, research-ethics]
+      - id: p5_diagnose
+        type: ranking
+        prompt: A relative asks you, as "the psychology student", to diagnose a cousin's behaviour.
+        max_score: 2
+        options:
+          - { id: a, label: "Explain kindly that you're a student and can't diagnose anyone, and suggest they speak to a qualified professional." }
+          - { id: b, label: "Share what you've read online about conditions that might fit." }
+          - { id: c, label: "Refuse to discuss it at all." }
+          - { id: d, label: "Listen to their worries, then help them find a psychologist or doctor nearby." }
+        answer: [d, a, c, b]
+        tags: [sjt, boundaries]
+      - id: p5_meme
+        type: ranking
+        prompt: A classmate posts a meme in the class group that mocks another student's accent.
+        max_score: 2
+        options:
+          - { id: a, label: "Don't share it, and message the classmate who posted it asking them to take it down." }
+          - { id: b, label: "Check in privately with the student being mocked." }
+          - { id: c, label: "React with a laughing emoji so you don't seem uptight." }
+          - { id: d, label: "Reply in the group calling the poster cruel." }
+        answer: [a, b, d, c]
+        tags: [sjt, bystander]
+      - id: p5_withdraw
+        type: ranking
+        prompt: You're helping a teacher run a short study. Halfway through, a participant says they don't want to continue.
+        max_score: 2
+        options:
+          - { id: a, label: "Thank them, let them leave without any penalty, and ask whether they'd like their answers deleted." }
+          - { id: b, label: "Encourage them to finish, because their data is important to the study." }
+          - { id: c, label: "Let them leave, but keep and use their answers anyway." }
+          - { id: d, label: "Tell them they can leave, but they'll miss the snacks at the end." }
+        answer: [a, b, d, c]
+        tags: [sjt, consent]
+
+  - id: P6
+    code: P6
+    title: Curiosity Question
+    duration_min: 10
+    weight: 13
+    traits: [Curiosity]
+    summary: One open question about human behaviour, in about 150 words.
+    intro: >-
+      One open question. Write about 150 words. We're interested in how you
+      would find things out, not in a textbook answer.
+    items:
+      - { draw: p6_prompts, count: 1 }
+
+  # Shared across every programme — see content/common/contribution.yaml
+  - { include: contribution, weight: 10 }
+
+pools:
+  p6_prompts:
+    - id: p6_reel
+      type: long_text
+      prompt: "A viral reel claims that \"people who sleep late are more creative.\" How would you find out if that's true?"
+      word_limit: 150
+      rubric_id: p_scientific
+      max_score: 4
+    - id: p6_noticed
+      type: long_text
+      prompt: Describe something about human behaviour you've noticed in your own life that you can't fully explain.
+      word_limit: 150
+      rubric_id: p_scientific
+      max_score: 4
+
+practice:
+  - id: pr_rank
+    type: ranking
+    prompt: "Try ranking: put these from most to least filling."
+    help: Drag, or use the arrow buttons. Nothing here is saved or scored.
+    scored: false
+    options:
+      - { id: thali, label: A full thali }
+      - { id: samosa, label: A samosa }
+      - { id: chai, label: A cup of chai }
+      - { id: water, label: A glass of water }
+    answer: [thali, samosa, chai, water]
+  - id: pr_text
+    type: short_text
+    prompt: "Try the text box: describe your morning in one sentence."
+    help: Notice the live word count. Pasting is turned off in the real test.
+    word_limit: 30
+    scored: false
+  - id: pr_stroop
+    type: interactive_task
+    module: stroop
+    config: stroop.yaml
+    prompt: Try a few practice rounds of the colour task.
+    scored: false

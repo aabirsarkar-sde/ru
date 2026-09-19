@@ -1,0 +1,462 @@
+# Rubrics for subjective items. Scale 1–4 on every criterion.
+# PLACEHOLDER descriptors & anchors — faculty to finalise before content lock
+# (PRD §13, blocking). Evaluators see these beside every response.
+rubrics:
+  # ───────────────────────────────────────────── B.Design
+  - id: d1_best_work
+    title: D1 · Best Work
+    note: Scored lightly. Its main purpose is the Stage 3 conversation. Flag suspected non-original work.
+    ignore: [Medium or materials used, Cost of materials, Framing or photo quality]
+    criteria:
+      - id: technical
+        name: Technical skill
+        descriptors:
+          "1": "Basic control; forms read poorly."
+          "2": "Some control; uneven."
+          "3": "Confident handling of the chosen medium."
+          "4": "Assured, deliberate control throughout."
+      - id: voice
+        name: Originality / voice
+        descriptors:
+          "1": "Copied or generic subject and treatment."
+          "2": "Familiar idea with small personal touches."
+          "3": "A clear personal choice of subject or treatment."
+          "4": "Distinctive — you would recognise their next piece."
+      - id: reflection
+        name: Reflection quality
+        descriptors:
+          "1": "Describes the piece only."
+          "2": "States an intention."
+          "3": "Intention plus a specific change they'd make."
+          "4": "Honest, specific self-critique tied to what they were trying to do."
+        anchor: '"I wanted the light from the window to feel harsh, so I left the paper white — but the pot lost its roundness; I would add a reflected light."  → 4'
+
+  - id: d2_empathy_pins
+    title: D2 · Where they get stuck
+    note: >-
+      Reward seeing the screen through the person's eyes. Auto-checks show which
+      known problem areas the pins landed on — that's evidence, not the score. A
+      sharp, well-reasoned pin on something we didn't list can score 4.
+    ignore: [Design or UX jargon, Spelling, Whether the pins match our list exactly]
+    criteria:
+      - id: perspective
+        name: Perspective-taking
+        descriptors:
+          "1": "Notes are about the app in general, not about this person."
+          "2": "Mentions the person, but the reasons would apply to anyone."
+          "3": "Reasons come from her situation (eyesight, language, one hand, time)."
+          "4": "Written in her voice; you can feel her hesitation or worry."
+        anchor: '"I can''t read if this is 500 ml or 1 litre — I''ll have to call Rohan." → 4'
+      - id: specificity
+        name: Specific observation
+        descriptors:
+          "1": "Vague (\"confusing\", \"bad design\")."
+          "2": "Points at an area but not what's wrong."
+          "3": "Names the exact element and what goes wrong."
+          "4": "Precise and notices something most people would miss."
+      - id: respect
+        name: Respect for the person
+        descriptors:
+          "1": "Blames or mocks the person (\"she's too old for apps\")."
+          "2": "Sympathetic but talks down."
+          "3": "Treats her as capable; the problem is the design."
+          "4": "Warm and respectful throughout, without stereotypes."
+
+  - id: d2_empathy_map
+    title: D2 · Says, thinks, feels, does
+    ignore: [Grammar, Full sentences]
+    criteria:
+      - id: depth
+        name: Depth of understanding
+        descriptors:
+          "1": "Only the obvious (\"angry\")."
+          "2": "Plausible but generic."
+          "3": "Goes beyond the obvious — mixed feelings, pressures, worries."
+          "4": "Insightful: the gap between what they say and what they think or feel."
+      - id: coherence
+        name: Fits the person and moment
+        descriptors:
+          "1": "Could be anyone, anywhere."
+          "2": "Loosely fits."
+          "3": "Clearly fits this person in this moment."
+          "4": "All four boxes tell one believable story."
+      - id: respect
+        name: Respect for the person
+        descriptors:
+          "1": "Caricature or blame."
+          "2": "Neutral."
+          "3": "Understanding, including of the other side (e.g. the rider)."
+          "4": "Generous and fair to everyone involved."
+
+  - id: d2_redesign
+    title: D2 · Redesign sketch
+    ignore: [Drawing polish, Medium (screen or paper), Visual style]
+    criteria:
+      - id: problem
+        name: Fixes a real pain point
+        descriptors:
+          "1": "No clear problem addressed."
+          "2": "Addresses a minor or cosmetic issue."
+          "3": "Clearly fixes one of the problems they identified."
+          "4": "Fixes the problem that matters most to this person."
+      - id: fit
+        name: Fit for the person
+        descriptors:
+          "1": "Ignores the person."
+          "2": "Generic improvement."
+          "3": "Designed around their situation."
+          "4": "Clever, simple and clearly made for them."
+      - id: communication
+        name: Communication
+        descriptors:
+          "1": "Can't tell what changed."
+          "2": "Understandable with the text."
+          "3": "Sketch and notes explain the change."
+          "4": "Instantly clear, with thoughtful annotations."
+
+  - id: d2_microcopy
+    title: D2 · The app's message
+    ignore: [Perfect grammar]
+    criteria:
+      - id: honesty
+        name: Honest and clear
+        descriptors:
+          "1": "Vague, misleading or blames the user."
+          "2": "Says what happened but not what's next."
+          "3": "Says what happened and what happens next."
+          "4": "Honest, specific (times, amounts) and owns the problem."
+      - id: tone
+        name: Tone for this person
+        descriptors:
+          "1": "Cold, robotic or jokey in the wrong way."
+          "2": "Polite but generic."
+          "3": "Warm and suited to the person."
+          "4": "Feels like it was written for them — calm, kind, respectful."
+      - id: action
+        name: Gives them a next step
+        descriptors:
+          "1": "No option offered."
+          "2": "An option, but hard to act on."
+          "3": "A clear, easy next step."
+          "4": "The right next step for them (e.g. a one-tap alternative)."
+
+  - id: d3_layout
+    title: D3 · Poster layout
+    note: Auto-checks (date position/size, overlaps) are shown to evaluators as evidence, not as the score.
+    criteria:
+      - id: hierarchy
+        name: Hierarchy
+        descriptors:
+          "1": "Everything competes; the date is lost."
+          "2": "Date findable with effort."
+          "3": "Date is clearly the second thing you see."
+          "4": "Date read within 3 seconds, without shouting."
+      - id: composition
+        name: Composition & balance
+        descriptors:
+          "1": "Elements scattered or cramped."
+          "2": "Some alignment."
+          "3": "Clear grid or alignment; comfortable spacing."
+          "4": "Deliberate, confident use of space and alignment."
+
+  - id: d4_problem_solving
+    title: D4 · Everyday problem
+    ignore: [Drawing polish, Spelling in annotations]
+    criteria:
+      - id: user
+        name: Understanding of the user
+        descriptors:
+          "1": "User not considered."
+          "2": "User named but generic."
+          "3": "Specific user needs and context shape the idea."
+          "4": "Insightful — notices something about the user others would miss."
+      - id: range
+        name: Number and range of ideas
+        descriptors:
+          "1": "One idea."
+          "2": "Variations of one idea."
+          "3": "Three genuinely different directions."
+          "4": "Wide, surprising range (product, service, system…)."
+      - id: feasibility
+        name: Feasibility
+        descriptors:
+          "1": "Could not work."
+          "2": "Works in theory; ignores cost or use."
+          "3": "Plausible to build and use."
+          "4": "Plausible, affordable and names its own failure mode."
+      - id: communication
+        name: Communication through sketches
+        descriptors:
+          "1": "Can't tell what it is."
+          "2": "Understandable with the text."
+          "3": "Sketches + annotations explain how it works."
+          "4": "Could be built from the sketch alone."
+
+  - id: d5_future
+    title: D5 · Future of design
+    criteria:
+      - id: original
+        name: Original thinking
+        descriptors:
+          "1": "Repeats a cliché."
+          "2": "Common view, stated clearly."
+          "3": "A personal angle or argument."
+          "4": "A genuinely fresh take, well argued."
+      - id: specific
+        name: Specificity
+        descriptors:
+          "1": "Abstract generalities."
+          "2": "One vague example."
+          "3": "Concrete examples."
+          "4": "Vivid, precise, well-chosen examples."
+      - id: people
+        name: Awareness of people and consequences
+        descriptors:
+          "1": "Ignores who is affected."
+          "2": "Mentions people in passing."
+          "3": "Considers who gains and who loses."
+          "4": "Weighs trade-offs and second-order effects."
+
+  # ───────────────────────────────────────────── B.Psych
+  - id: p_scientific
+    title: P1 / P6 · Scientific reasoning
+    criteria:
+      - id: reasoning
+        name: Scientific reasoning
+        descriptors:
+          "1": "Accepts claims at face value."
+          "2": "Questions the claim without a method."
+          "3": "Proposes a way to test it (comparison, measurement)."
+          "4": "Proposes a fair test — controls, sample, what would change their mind."
+      - id: alternatives
+        name: Recognition of alternative explanations
+        descriptors:
+          "1": "None."
+          "2": "Hints at one."
+          "3": "Names a plausible alternative or confound."
+          "4": "Several alternatives, and how to rule them out."
+      - id: clarity
+        name: Clarity
+        descriptors:
+          "1": "Hard to follow."
+          "2": "Understandable with effort."
+          "3": "Clear."
+          "4": "Clear and economical."
+
+  - id: p3_stroop
+    title: P3 · Experience & explain
+    note: The candidate's own reaction times are NOT scored — only the explanation.
+    ignore: [How fast the candidate was, How accurate the candidate was]
+    criteria:
+      - id: description
+        name: Accurate description
+        descriptors:
+          "1": "Doesn't describe what happened."
+          "2": "Vague description."
+          "3": "Accurately describes the slowdown / errors on mismatched words."
+          "4": "Precise, uses their own numbers or specific moments."
+      - id: explanation
+        name: Plausible explanation
+        descriptors:
+          "1": "None or implausible."
+          "2": "\"Confusing\" without mechanism."
+          "3": "Reading is automatic and competes with naming the colour."
+          "4": "Clear mechanism (automaticity / interference / attention)."
+      - id: broader
+        name: Links to a broader idea
+        descriptors:
+          "1": "None."
+          "2": "Generic link."
+          "3": "Links to everyday life (habits, driving, reading signs)."
+          "4": "Insightful link to how the mind handles competing information."
+
+  - id: p4_observation
+    title: P4 · Observation vs inference
+    criteria:
+      - id: separation
+        name: Separation of observation and inference
+        descriptors:
+          "1": "Interpretation presented as fact."
+          "2": "Mostly mixed."
+          "3": "Clear separation with minor slips."
+          "4": "Observation box contains only what is visible."
+      - id: perspectives
+        name: Multiple perspectives
+        descriptors:
+          "1": "One story."
+          "2": "One story per person."
+          "3": "More than one possible explanation."
+          "4": "Several explanations, each tied to evidence in the panels."
+      - id: empathy
+        name: Empathy without assumption
+        descriptors:
+          "1": "Judgemental or stereotyping."
+          "2": "Sympathetic but assumes."
+          "3": "Considers feelings tentatively."
+          "4": "Warm, tentative, avoids labelling anyone."
+
+  # ───────────────────────────────────────────── BBA Entrepreneurship
+  - id: b2_case
+    title: B2 · Case recommendation
+    criteria:
+      - id: evidence
+        name: Uses the case data
+        descriptors:
+          "1": "Ignores the numbers."
+          "2": "Mentions a number."
+          "3": "Recommendation follows from the data."
+          "4": "Spots the key driver (e.g. margin per order) and builds on it."
+      - id: plan
+        name: Quality of the 90-day plan
+        descriptors:
+          "1": "No plan."
+          "2": "Generic (\"do marketing\")."
+          "3": "Specific, sequenced actions."
+          "4": "Specific actions with a way to measure success."
+      - id: judgment
+        name: Commercial judgment
+        descriptors:
+          "1": "Unrealistic."
+          "2": "Some trade-offs missed."
+          "3": "Weighs risk vs reward."
+          "4": "Mature — knows what to test before committing."
+
+  - id: b3_reflection
+    title: B3 · Game reflection
+    criteria:
+      - id: honesty
+        name: Honest self-assessment
+        descriptors:
+          "1": "Blames luck only."
+          "2": "Names decisions without reasons."
+          "3": "Explains why a decision was good or bad."
+          "4": "Candid, specific, connects to evidence from the game."
+      - id: learning
+        name: Learning
+        descriptors:
+          "1": "None."
+          "2": "Vague."
+          "3": "A clear change they'd make."
+          "4": "A transferable principle they've drawn out."
+
+  - id: b4_one_liner
+    title: B4 · Startup one-liner
+    criteria:
+      - id: clarity
+        name: Clarity
+        descriptors:
+          "1": "Can't tell what it does."
+          "2": "Understandable, wordy."
+          "3": "Clear in one read."
+          "4": "Sharp — a stranger could repeat it."
+      - id: customer
+        name: Specificity of the customer
+        descriptors:
+          "1": "\"Everyone\"."
+          "2": "A broad group."
+          "3": "A specific group."
+          "4": "A specific group in a specific situation."
+      - id: grounding
+        name: Grounding in real observation
+        descriptors:
+          "1": "Pure speculation."
+          "2": "Assumed problem."
+          "3": "Personal experience."
+          "4": "Observed evidence — who, when, how often."
+      - id: risk
+        name: Honesty about risk
+        descriptors:
+          "1": "No risk / \"none\"."
+          "2": "Generic (\"competition\")."
+          "3": "A real, specific risk."
+          "4": "The risk that would actually kill it, stated plainly."
+
+  # ───────────────────────────────────────────── Common section (all programmes)
+  - id: c1_nation
+    title: C1 · Something worth fixing
+    note: >-
+      We are looking for genuine, specific interest — not patriotism as
+      performance. A small, closely-seen problem beats a grand one. Never reward
+      or penalise a candidate for the cause they choose, only for how well they
+      see it.
+    ignore: [Which cause they pick, Writing polish, Whether it is "important enough"]
+    criteria:
+      - id: specific
+        name: Specificity
+        descriptors:
+          "1": "A slogan or a category (\"corruption\", \"poverty\")."
+          "2": "A real problem, described generally."
+          "3": "A specific problem, with who it affects and where."
+          "4": "Specific and closely observed — a place, a person, a detail only someone who looked would know."
+        anchor: '"The government school near my house has one working tap for 400 children; the girls'' queue eats their lunch break." → 4'
+      - id: connection
+        name: Why this one
+        descriptors:
+          "1": "No reason given."
+          "2": "Generic reason (\"it is a big issue\")."
+          "3": "A clear personal or observed connection."
+          "4": "Honest about where the interest comes from, without inflating it."
+      - id: realism
+        name: Sense of what it would take
+        descriptors:
+          "1": "Magic-wand thinking."
+          "2": "Names a solution with no sense of effort."
+          "3": "Understands this is slow, partial work."
+          "4": "Realistic about trade-offs, and still wants to do it."
+
+  - id: c1_evidence
+    title: C1 · What they've actually done
+    note: >-
+      Scale does not matter; honesty and initiative do. An honest "nothing yet,
+      and here's what stopped me" with a real next step can score 3. An
+      implausible, polished achievement should not score 4 — flag it instead.
+    ignore: [Size or prestige of what they did, Whether it succeeded]
+    criteria:
+      - id: initiative
+        name: Initiative
+        descriptors:
+          "1": "Only what was required of them (school activity, forced volunteering)."
+          "2": "Joined something someone else started."
+          "3": "Did something small on their own initiative."
+          "4": "Started something and kept it going, however small."
+      - id: honesty
+        name: Honesty
+        descriptors:
+          "1": "Vague or grandiose; hard to believe."
+          "2": "Plausible but polished."
+          "3": "Concrete and believable, including what was hard."
+          "4": "Candid — admits limits, effort that fizzled, or that they haven't started yet."
+      - id: learning
+        name: What they took from it
+        descriptors:
+          "1": "None."
+          "2": "A generic lesson."
+          "3": "A specific realisation about the problem or themselves."
+          "4": "A realisation that changed what they'd do next."
+
+  - id: c1_campus
+    title: C1 · Contribution to campus life
+    note: Reward concrete contribution over enthusiasm. Consuming campus life is fine; building it is what we're measuring.
+    ignore: [Which activity they choose, Prior experience or talent in it]
+    criteria:
+      - id: concrete
+        name: Concreteness
+        descriptors:
+          "1": "\"I'd join and participate.\""
+          "2": "Names an activity, but not what they'd do."
+          "3": "Describes specific things they'd do."
+          "4": "A plan someone could actually act on in week one."
+      - id: contribution
+        name: Giving vs taking
+        descriptors:
+          "1": "Only what they'd get out of it."
+          "2": "Mostly personal benefit."
+          "3": "Clear contribution to others."
+          "4": "Makes room for other people — brings others in, builds something that outlasts them."
+      - id: realistic
+        name: Realistic about their time
+        descriptors:
+          "1": "Promises everything."
+          "2": "Over-commits without noticing."
+          "3": "Fits what a first-year could really give."
+          "4": "Honest about limits and still useful."

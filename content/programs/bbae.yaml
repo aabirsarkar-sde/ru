@@ -1,0 +1,521 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# BBA Entrepreneurship — Stage 2 aptitude test
+# PLACEHOLDER CONTENT (PRD §0.5). Faculty will rewrite before content lock.
+# ─────────────────────────────────────────────────────────────────────────────
+id: bbae
+name: BBA Entrepreneurship
+full_name: BBA in Entrepreneurship
+school: School of Entrepreneurship
+accent: navy
+duration_min: 125
+traits: [Commercial reasoning, Numeracy, Decisions under uncertainty, Initiative, Communication]
+pitch: >-
+  Crunch the numbers behind a real-looking business, run your own stall at a
+  four-day mela, and pitch a startup in twenty words.
+window: { id: w-2026-oct-a, name: "October window A", seed: "RU-2026-OCT-A" }
+
+sections:
+  - id: B1
+    code: B1
+    title: Business Numeracy
+    duration_min: 15
+    weight: 14
+    traits: [Numeracy]
+    scratchpad: true
+    summary: Ten quick questions on margins, break-even and percentages.
+    intro: >-
+      Ten quick questions: margins, break-even, percentage change and simple unit
+      economics. Use the rough-work pad (bottom right) if it helps; a calculator isn't
+      needed.
+    items:
+      - id: b1_tiffin
+        type: mcq_single
+        prompt: A tiffin service charges ₹120 per meal. Ingredients cost ₹55, packaging ₹10 and delivery ₹20. How many meals a month cover ₹42,000 of rent and salaries?
+        options:
+          - { id: a, label: "350" }
+          - { id: b, label: "764" }
+          - { id: c, label: "1,200" }
+          - { id: d, label: "494" }
+        answer: c
+        tags: [break-even, medium]
+      - id: b1_margin
+        type: mcq_single
+        prompt: A phone cover costs ₹80 to make and sells for ₹200. What is the profit margin on the selling price?
+        options:
+          - { id: a, label: "40%" }
+          - { id: b, label: "60%" }
+          - { id: c, label: "150%" }
+          - { id: d, label: "120%" }
+        answer: b
+        tags: [margin, easy]
+      - id: b1_growth
+        type: mcq_single
+        prompt: Monthly orders rose from 800 to 1,000. By what percentage did they grow?
+        options:
+          - { id: a, label: "20%" }
+          - { id: b, label: "25%" }
+          - { id: c, label: "80%" }
+          - { id: d, label: "200%" }
+        answer: b
+        tags: [percent-change, easy]
+      - id: b1_sale
+        type: mcq_single
+        prompt: A shop cuts the price of a ₹500 kurta by 20% for a sale, then raises the sale price by 20%. What is the new price?
+        options:
+          - { id: a, label: ₹500 }
+          - { id: b, label: ₹480 }
+          - { id: c, label: ₹520 }
+          - { id: d, label: ₹400 }
+        answer: b
+        tags: [percent-change, medium]
+      - id: b1_juice
+        type: mcq_single
+        prompt: A juice stall has fixed costs of ₹9,000 a month. Each glass sells for ₹50 and costs ₹20 to make. How many glasses must it sell to break even?
+        options:
+          - { id: a, label: "180" }
+          - { id: b, label: "300" }
+          - { id: c, label: "450" }
+          - { id: d, label: "900" }
+        answer: b
+        tags: [break-even, easy]
+      - id: b1_cac
+        type: mcq_single
+        prompt: A bike-taxi app earns ₹30 per ride. Winning a new customer costs ₹450 in ads, and the average customer takes 2 rides a month. How many months until a new customer pays back their ad cost?
+        options:
+          - { id: a, label: "2" }
+          - { id: b, label: "7.5" }
+          - { id: c, label: "15" }
+          - { id: d, label: "450" }
+        answer: b
+        tags: [unit-economics, medium]
+      - id: b1_discount
+        type: mcq_single
+        prompt: A café sells coffee at ₹150; each cup costs ₹90 to make. It offers 20% off. By how much does the profit per cup fall?
+        options:
+          - { id: a, label: "20%" }
+          - { id: b, label: "30%" }
+          - { id: c, label: "50%" }
+          - { id: d, label: "60%" }
+        answer: c
+        tags: [discounts, hard]
+      - id: b1_interest
+        type: mcq_single
+        prompt: You borrow ₹50,000 at 12% simple interest a year, for 6 months. How much interest do you pay?
+        options:
+          - { id: a, label: "₹6,000" }
+          - { id: b, label: "₹3,000" }
+          - { id: c, label: ₹600 }
+          - { id: d, label: "₹1,500" }
+        answer: b
+        tags: [interest, easy]
+      - id: b1_markup
+        type: mcq_single
+        prompt: A reseller wants a 25% margin on the selling price. The product costs ₹300. What should the price be?
+        options:
+          - { id: a, label: ₹375 }
+          - { id: b, label: ₹400 }
+          - { id: c, label: ₹325 }
+          - { id: d, label: ₹450 }
+        answer: b
+        tags: [margin, hard]
+      - id: b1_mix
+        type: mcq_single
+        prompt: A stall sells 60 cups of chai at ₹20 and 40 cups of coffee at ₹40. What is the average price per cup?
+        options:
+          - { id: a, label: ₹30 }
+          - { id: b, label: ₹28 }
+          - { id: c, label: ₹24 }
+          - { id: d, label: ₹32 }
+        answer: b
+        tags: [weighted-average, medium]
+
+  - id: B2
+    code: B2
+    title: Business Case
+    duration_min: 30
+    weight: 22
+    traits: [Commercial reasoning, Communication]
+    scratchpad: true
+    summary: A one-page case with real-looking numbers. Interpret, critique, recommend.
+    intro: >-
+      You'll read a one-page case about a small business, with a table of
+      numbers. Six questions check how you read the data and spot flawed
+      reasoning; then you'll advise the founder in your own words.
+    items:
+      - { draw: b2_cases, count: 1 }
+
+  - id: B3
+    code: B3
+    title: Mela Market
+    duration_min: 35
+    weight: 32
+    traits: [Decisions under uncertainty, Commercial reasoning]
+    locked_sequence: true
+    summary: Run a stall at a four-day city mela against three rival stallholders.
+    intro: >-
+      A business game. You'll run a stall at a four-day city mela with ₹1,00,000,
+      against three other stallholders. It starts with a short tutorial. There's
+      no speed or reflex element — every candidate faces exactly the same mela,
+      so your result depends only on your decisions. Afterwards you'll reflect
+      on how it went.
+    items:
+      - id: b3_game
+        type: interactive_task
+        module: mela_market
+        config: mela-market.yaml
+        prompt: Run your stall.
+        max_score: 4
+        locked_sequence: true
+        tags: [simulation]
+      - id: b3_reflect
+        type: short_text
+        prompt: What was your best and worst decision, and what would you do differently?
+        word_limit: 100
+        rubric_id: b3_reflection
+        counts_toward: B4
+        max_score: 4
+        tags: [reflection]
+
+  - id: B4
+    code: B4
+    title: Startup One-Liner
+    duration_min: 15
+    weight: 22
+    traits: [Communication, Initiative]
+    summary: Pitch a startup idea in twenty words, then defend it.
+    intro: >-
+      Pitch a startup you'd genuinely like to build. The word limits are strict
+      on purpose — clarity beats length. This section's score also includes your
+      Mela Market reflection.
+    items:
+      - id: b4_pitch
+        type: short_text
+        prompt: Your startup, in three parts.
+        fields:
+          - { id: one_liner, label: "One-liner — \"We help [who] do [what] by [how].\"", word_limit: 20, rows: 2, placeholder: "We help … do … by …" }
+          - { id: why_real, label: Why is this problem real? Use evidence from your own life or observation., word_limit: 60, rows: 4 }
+          - { id: risk, label: "Biggest risk: the main reason this could fail.", word_limit: 40, rows: 3 }
+        rubric_id: b4_one_liner
+        max_score: 4
+        tags: [pitch]
+
+  # Shared across every programme — see content/common/contribution.yaml
+  - { include: contribution, weight: 10 }
+
+  - id: B5
+    code: B5
+    title: Initiative Evidence
+    kind: optional
+    duration_min: 10
+    weight: 0
+    traits: [Initiative]
+    summary: Optional. Something you've started, sold, organised or fixed.
+    intro: >-
+      Optional, and not scored. Your answer goes to your Stage 3 interviewers as
+      a conversation starter. Skip it if nothing comes to mind.
+    items:
+      - id: b5_initiative
+        type: short_text
+        prompt: Describe something you've started, sold, organised or fixed, however small. What happened?
+        word_limit: 100
+        scored: false
+
+pools:
+  b2_cases:
+    - type: stimulus_passage
+      id: b2_rasoi
+      eyebrow: Case
+      title: Rasoi Express
+      body: |
+        **Rasoi Express** is a cloud kitchen in Dehradun run by 26-year-old Kavya. It sells north-Indian meals only through two food-delivery apps.
+
+        In January, the apps offered Kavya a "growth programme": if she funded bigger discounts, the apps would feature her restaurant higher in search. She agreed, and raised the discount a little every month. Orders grew by 60% in six months.
+
+        The apps take a commission on every order, and her kitchen rent, gas and three cooks' salaries — about ₹90,000 a month — are the same however many orders she gets.
+
+        Kavya is proud of the growth. Her plan: **open a second outlet across town** next month, using a ₹6 lakh loan from her uncle. "We're clearly winning," she says. "Double the kitchens, double the profit."
+      media:
+        - kind: table
+          table:
+            title: Rasoi Express — January to June (₹ per order unless stated)
+            columns: [Month, Orders, Avg bill, Discount, Food & packing, App commission, Monthly profit (₹)]
+            rows:
+              - [Jan, "1,500", 260, 20, 110, 60, "15,000"]
+              - [Feb, "1,650", 260, 30, 110, 60, "9,000"]
+              - [Mar, "1,850", 260, 40, 110, 60, "2,500"]
+              - [Apr, "2,050", 260, 45, 110, 60, "2,250"]
+              - [May, "2,250", 260, 50, 110, 60, "0"]
+              - [Jun, "2,400", 260, 55, 110, 60, "−6,000"]
+            note: Fixed costs are ₹90,000 a month in every month.
+      items:
+        - id: b2r_worst
+          type: mcq_single
+          prompt: Which month was least profitable?
+          options:
+            - { id: a, label: January }
+            - { id: b, label: April }
+            - { id: c, label: May }
+            - { id: d, label: June }
+          answer: d
+          tags: [read-table, easy]
+        - id: b2r_contribution
+          type: mcq_single
+          prompt: What happened to the money each order leaves after discount, food, packing and commission, from January to June?
+          options:
+            - { id: a, label: "It stayed at ₹70" }
+            - { id: b, label: "It fell from ₹70 to ₹35 — it halved" }
+            - { id: c, label: "It rose, because orders grew" }
+            - { id: d, label: "It fell from ₹260 to ₹205" }
+          answer: b
+          tags: [contribution-margin, medium]
+        - id: b2r_why
+          type: mcq_single
+          prompt: Orders grew 60%. Why did profit fall?
+          options:
+            - { id: a, label: Fixed costs went up }
+            - { id: b, label: "Each order earned so much less that the extra orders couldn't make up for it" }
+            - { id: c, label: Food costs rose }
+            - { id: d, label: The apps raised their commission }
+          answer: b
+          tags: [interpretation, medium]
+        - id: b2r_july
+          type: mcq_single
+          prompt: In July Kavya cuts the discount back to ₹20. Orders drop to 1,800. Everything else stays the same. What is July's profit?
+          options:
+            - { id: a, label: "−₹6,000" }
+            - { id: b, label: "₹15,000" }
+            - { id: c, label: "₹36,000" }
+            - { id: d, label: "₹1,26,000" }
+          answer: c
+          tags: [calculation, hard]
+        - id: b2r_flaw_double
+          type: mcq_single
+          prompt: '"Double the kitchens, double the profit." What is the main flaw in this reasoning?'
+          options:
+            - { id: a, label: A second outlet would need a new name }
+            - { id: b, label: "The business is now losing money on current terms — a second outlet could double the loss, and add a second ₹90,000 of fixed costs" }
+            - { id: c, label: Dehradun is too small for two outlets }
+            - { id: d, label: There is no flaw — growth is working }
+          answer: b
+          tags: [critical-thinking, medium]
+        - id: b2r_flaw_winning
+          type: mcq_single
+          prompt: '"We''re clearly winning" — what evidence is missing before Kavya can say customers truly love Rasoi Express?'
+          options:
+            - { id: a, label: "Whether customers come back and order at full price, without big discounts" }
+            - { id: b, label: How many cooks she has }
+            - { id: c, label: The colour of her packaging }
+            - { id: d, label: How many apps she is on }
+          answer: a
+          tags: [critical-thinking, medium]
+        - id: b2r_advice
+          type: long_text
+          prompt: Should Kavya open the second outlet now? What would you do in the next 90 days instead, or first?
+          word_limit: 150
+          rubric_id: b2_case
+          max_score: 4
+          tags: [recommendation]
+
+    - type: stimulus_passage
+      id: b2_kitaab
+      eyebrow: Case
+      title: Kitaab Kart
+      body: |
+        **Kitaab Kart** sells ready-made school stationery kits — notebooks, geometry boxes, covers, labels — to parents online, delivered before the new school year. Founder Arjun started it from his father's shop in Indore.
+
+        Business is very seasonal: March and April, when schools reopen, are huge. During April the team of four worked through the night, and some kits went out with the wrong class's books. Parents returned them.
+
+        Every order earns about ₹240 before advertising and returns. Each returned order earns nothing and costs about ₹100 extra in shipping.
+
+        Arjun wants to **launch a new line of art supplies** next month, and to hire ten people "because April proved we can do 3,000 orders a month".
+      media:
+        - kind: table
+          table:
+            title: Kitaab Kart — January to June
+            columns: [Month, Orders, Ad spend (₹), Return rate, Profit (₹)]
+            rows:
+              - [Jan, 400, "40,000", "5%", "19,200"]
+              - [Feb, 450, "45,000", "5%", "25,350"]
+              - [Mar, "1,600", "1,50,000", "12%", "1,38,720"]
+              - [Apr, "3,200", "2,00,000", "18%", "3,42,160"]
+              - [May, 900, "60,000", "8%", "1,01,520"]
+              - [Jun, 500, "55,000", "6%", "24,800"]
+            note: Fixed costs are ₹30,000 a month.
+      items:
+        - id: b2k_adcost
+          type: mcq_single
+          prompt: In which month was advertising spend *per order* highest?
+          options:
+            - { id: a, label: January }
+            - { id: b, label: April }
+            - { id: c, label: May }
+            - { id: d, label: June }
+          answer: d
+          tags: [calculation, medium]
+        - id: b2k_returns
+          type: mcq_single
+          prompt: How many orders were returned in April?
+          options:
+            - { id: a, label: "180" }
+            - { id: b, label: "576" }
+            - { id: c, label: "320" }
+            - { id: d, label: "3,200" }
+          answer: b
+          tags: [calculation, easy]
+        - id: b2k_pattern
+          type: mcq_single
+          prompt: What does the return rate suggest?
+          options:
+            - { id: a, label: Returns are random and can't be managed }
+            - { id: b, label: "Returns rise sharply when volumes peak — likely a fixable packing and fulfilment problem" }
+            - { id: c, label: Parents dislike the product }
+            - { id: d, label: Ads bring in customers who return things }
+          answer: b
+          tags: [interpretation, medium]
+        - id: b2k_share
+          type: mcq_single
+          prompt: Roughly what share of the six months' orders came in March and April?
+          options:
+            - { id: a, label: About a third }
+            - { id: b, label: About half }
+            - { id: c, label: About two-thirds }
+            - { id: d, label: About 90% }
+          answer: c
+          tags: [percentages, medium]
+        - id: b2k_flaw_hire
+          type: mcq_single
+          prompt: '"April proved we can do 3,000 orders a month." What is the flaw?'
+          options:
+            - { id: a, label: "April is a seasonal spike when schools reopen — most months are far smaller" }
+            - { id: b, label: "They actually did 3,200" }
+            - { id: c, label: Ten people is too few }
+            - { id: d, label: There is no flaw }
+          answer: a
+          tags: [critical-thinking, easy]
+        - id: b2k_flaw_line
+          type: mcq_single
+          prompt: What is the strongest reason to be cautious about launching art supplies next month?
+          options:
+            - { id: a, label: Art supplies are unpopular }
+            - { id: b, label: "The team is already struggling with fulfilment errors at peak; a new line adds complexity before that's fixed" }
+            - { id: c, label: The name Kitaab Kart only suits books }
+            - { id: d, label: Advertising is too cheap }
+          answer: b
+          tags: [critical-thinking, medium]
+        - id: b2k_advice
+          type: long_text
+          prompt: Should Arjun launch the art-supplies line now? What would you do in the next 90 days instead, or first?
+          word_limit: 150
+          rubric_id: b2_case
+          max_score: 4
+          tags: [recommendation]
+
+    - type: stimulus_passage
+      id: b2_fixmyride
+      eyebrow: Case
+      title: FixMyRide
+      body: |
+        **FixMyRide** is an app in Lucknow that sends a mechanic to your door to service or repair your scooter or motorcycle. Founder Sana signed up 40 freelance mechanics who get paid per job.
+
+        She spent heavily on Instagram ads and bookings nearly quadrupled in six months. But the number of mechanics stayed at 40. Mechanics now cancel more jobs, arrive late, and ratings have slipped. The business still loses money every month.
+
+        Sana's investors want growth. Her plan: **launch in Kanpur next month**. "Once we're in two cities, the losses will disappear."
+      media:
+        - kind: table
+          table:
+            title: FixMyRide — January to June
+            columns: [Month, Bookings, Completed, Avg rating, Repeat customers, Profit (₹)]
+            rows:
+              - [Jan, 600, 540, 4.5, "35%", "−20,000"]
+              - [Feb, 800, 704, 4.4, "33%", "−15,000"]
+              - [Mar, "1,100", 924, 4.2, "30%", "−12,000"]
+              - [Apr, "1,500", "1,170", 4.0, "26%", "−14,000"]
+              - [May, "1,900", "1,406", 3.8, "22%", "−22,000"]
+              - [Jun, "2,300", "1,633", 3.6, "18%", "−35,000"]
+      items:
+        - id: b2f_cancel
+          type: mcq_single
+          prompt: In which month were the most bookings *not* completed?
+          options:
+            - { id: a, label: January }
+            - { id: b, label: April }
+            - { id: c, label: May }
+            - { id: d, label: June }
+          answer: d
+          tags: [read-table, easy]
+        - id: b2f_growth
+          type: mcq_single
+          prompt: By roughly how much did *completed* jobs grow from January to June?
+          options:
+            - { id: a, label: About 50% }
+            - { id: b, label: About 100% }
+            - { id: c, label: About 200% (roughly tripled) }
+            - { id: d, label: About 280% }
+          answer: c
+          tags: [percent-change, medium]
+        - id: b2f_ratings
+          type: mcq_single
+          prompt: What is the most likely reason ratings and repeat customers fell?
+          options:
+            - { id: a, label: "Bookings outgrew the fixed pool of 40 mechanics, so service got worse" }
+            - { id: b, label: Customers in Lucknow are harder to please }
+            - { id: c, label: The app's design changed }
+            - { id: d, label: Instagram ads attract bad customers }
+          answer: a
+          tags: [interpretation, medium]
+        - id: b2f_repeat
+          type: mcq_single
+          prompt: Why does the fall in repeat customers matter most?
+          options:
+            - { id: a, label: It doesn't — new customers are replacing them }
+            - { id: b, label: "Each new customer costs ad money; if fewer come back, every booking gets more expensive to win" }
+            - { id: c, label: Repeat customers leave better ratings }
+            - { id: d, label: Investors only look at repeat rate }
+          answer: b
+          tags: [unit-economics, hard]
+        - id: b2f_flaw_love
+          type: mcq_single
+          prompt: '"Bookings nearly quadrupled, so customers clearly love the app." What is the flaw?'
+          options:
+            - { id: a, label: "Growth came with heavy ads, while ratings and repeat use fell — the data points the other way" }
+            - { id: b, label: Bookings only tripled }
+            - { id: c, label: Love can't be measured }
+            - { id: d, label: There is no flaw }
+          answer: a
+          tags: [critical-thinking, medium]
+        - id: b2f_flaw_scale
+          type: mcq_single
+          prompt: '"Once we''re in two cities, the losses will disappear." What is the flaw?'
+          options:
+            - { id: a, label: Kanpur is too close to Lucknow }
+            - { id: b, label: "Losses grew as bookings grew — a second city copies the same problem instead of fixing it" }
+            - { id: c, label: Investors dislike expansion }
+            - { id: d, label: There is no flaw }
+          answer: b
+          tags: [critical-thinking, medium]
+        - id: b2f_advice
+          type: long_text
+          prompt: Should Sana launch in Kanpur next month? What would you do in the next 90 days instead, or first?
+          word_limit: 150
+          rubric_id: b2_case
+          max_score: 4
+          tags: [recommendation]
+
+practice:
+  - id: pr_mcq
+    type: mcq_single
+    prompt: "Try a question: a samosa costs ₹8 to make and sells for ₹20. What's the profit per samosa?"
+    help: Nothing here is saved or scored.
+    scored: false
+    options:
+      - { id: a, label: ₹8 }
+      - { id: b, label: ₹12 }
+      - { id: c, label: ₹20 }
+      - { id: d, label: ₹28 }
+    answer: b
+  - id: pr_mela
+    type: interactive_task
+    module: mela_market
+    config: mela-market.yaml
+    prompt: Try a one-day practice mela.
+    scored: false

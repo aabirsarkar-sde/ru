@@ -1,0 +1,49 @@
+{
+  "brand.stage": "Stage 2 · Aptitude",
+  "common.continue": "Continue",
+  "common.back": "Back",
+  "common.next": "Next",
+  "common.previous": "Previous",
+  "common.cancel": "Cancel",
+  "common.close": "Close",
+  "common.minutes": "{n} min",
+  "common.untimed": "Untimed",
+  "common.optional": "Optional",
+
+  "save.saving": "Saving…",
+  "save.saved": "Saved",
+  "save.savedAgo": "Saved {ago}",
+  "save.offline": "Offline — saved on this device",
+  "save.justNow": "just now",
+
+  "timer.remaining": "Time left in this section",
+  "timer.warn5": "5 minutes left in this section.",
+  "timer.warn1": "1 minute left. Your work is saved automatically.",
+  "timer.expired": "Time's up for {section}. Your answers were saved.",
+
+  "font.label": "Text size",
+
+  "runner.begin": "Begin section",
+  "runner.finish": "Finish section",
+  "runner.finishTitle": "Finish {section}?",
+  "runner.finishBody": "You won't be able to come back to this section.",
+  "runner.finishUnanswered": "{n} question(s) still unanswered.",
+  "runner.finishConfirm": "Yes, finish section",
+  "runner.keepWorking": "Keep working",
+  "runner.question": "Question {n} of {total}",
+  "runner.questions": "Questions",
+  "runner.answered": "Answered",
+  "runner.lockedHint": "This section runs in a fixed order.",
+  "runner.pretestNote": "In the live test this is submitted up to 48 hours before your test day.",
+  "runner.skipOptional": "Skip this section",
+
+  "text.words": "{n} / {limit} words",
+  "text.wordsNoLimit": "{n} words",
+  "text.over": "{n} over the limit — please trim.",
+  "text.pasteBlocked": "Pasting is turned off for written answers — please type your own words.",
+
+  "done.title": "Thank you, {name}.",
+  "done.body": "Your {program} test is submitted. Every answer was saved.",
+
+  "a11y.skip": "Skip to content"
+}
