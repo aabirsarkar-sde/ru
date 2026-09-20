@@ -16,14 +16,16 @@ import {
 test("B.Design: full attempt with drawing, upload, layout, disconnect and resume", async ({ page }) => {
   await startTest(page, "bdes");
 
-  // D1 — untimed pre-test uploads
+  // D1 — untimed pre-test: work photos, reflection, optional portfolio
   await begin(page);
   await page.locator("input[type=file]").first().setInputFiles(ARTWORK);
   await expect(page.getByText("1/3 uploaded ✓")).toBeVisible();
   await next(page);
-  await page.locator("input[type=file]").first().setInputFiles(ARTWORK);
-  await next(page);
   await page.locator("textarea").fill("I wanted the steel to feel cold against warm light.");
+  await next(page);
+  await page.getByRole("textbox", { name: "Portfolio link 1" }).fill("behance.net/ananya");
+  await page.locator("input[type=file]").setInputFiles(ARTWORK);
+  await expect(page.getByText("artwork.png")).toBeVisible();
   await finishSection(page);
 
   // D2 — Design for People: pin problems on an app screen, then drop the
@@ -53,7 +55,7 @@ test("B.Design: full attempt with drawing, upload, layout, disconnect and resume
   // D3 — an MCQ and the poster layout via keyboard
   await begin(page);
   await pickOption(page, 2);
-  await page.getByRole("button", { name: "Question 12" }).click();
+  await page.getByRole("button", { name: "Question 14" }).click(); // the poster layout, last in D3
   await page.getByRole("button", { name: /^Date\./ }).focus();
   await page.keyboard.press("Enter");
   await page.keyboard.press("Shift+ArrowUp");

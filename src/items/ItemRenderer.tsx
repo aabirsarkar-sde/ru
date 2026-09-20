@@ -10,6 +10,7 @@ import { InteractiveTask } from "./InteractiveTask";
 import { LayoutDrag } from "./LayoutDrag";
 import { McqMulti, McqSingle } from "./Mcq";
 import { PhotoUpload } from "./PhotoUpload";
+import { Portfolio } from "./Portfolio";
 import { Ranking } from "./Ranking";
 import { TextResponse } from "./TextResponse";
 
@@ -25,6 +26,7 @@ const REGISTRY: Record<string, React.ComponentType<any>> = {
   layout_drag: LayoutDrag,
   hotspot: Hotspot,
   allocation: Allocation,
+  portfolio: Portfolio,
   interactive_task: InteractiveTask,
 };
 

@@ -33,6 +33,16 @@ export interface Placement {
   h: number;
 }
 
+export interface PortfolioFile {
+  id: string;
+  name: string;
+  /** "application/pdf" or an image type. */
+  type: string;
+  bytes: number;
+  dataUrl: string;
+  at: number;
+}
+
 export interface Pin {
   id: string;
   /** Position in % of the image (0–100). */
@@ -65,6 +75,7 @@ export type Response =
   | { type: "layout_drag"; placements: Record<string, Placement> }
   | { type: "hotspot"; pins: Pin[] }
   | { type: "allocation"; allocations: Record<string, number> }
+  | { type: "portfolio"; links: string[]; files: PortfolioFile[] }
   | { type: "interactive_task"; module: string; completed: boolean; data: unknown };
 
 /** The response shape for an item type (handles members that cover several types). */
@@ -103,6 +114,8 @@ export function isAnswered(r: Response | undefined): boolean {
       return r.pins.length > 0;
     case "allocation":
       return Object.values(r.allocations).some((v) => v > 0);
+    case "portfolio":
+      return r.links.some((l) => l.trim().length > 0) || r.files.length > 0;
     case "interactive_task":
       return r.completed;
   }

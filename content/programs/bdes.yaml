@@ -8,7 +8,7 @@ name: B.Design
 full_name: Bachelor of Design
 school: School of Creativity
 accent: narangi
-duration_min: 135
+duration_min: 140
 traits: [Empathy, Observation, Visual thinking, Ideation, Visual literacy, Reflective thinking]
 pitch: >-
   See an everyday app through someone else's eyes, design for real people,
@@ -27,35 +27,45 @@ sections:
     summary: Share one piece you're proud of — and how you made it.
     intro: >-
       Upload photos of the visual work you're proudest of — a drawing, painting,
-      collage, model, anything. Add one work-in-progress photo or rough sketch of
-      the same piece. In your Stage 3 interview you'll talk us through how you
-      made it, so choose something you can discuss.
+      collage, model, anything — and tell us what you were trying to do. In your
+      Stage 3 interview you'll talk us through how you made it, so choose
+      something you can discuss. If you already have a portfolio, you can share
+      it at the end; it's optional.
     items:
       - id: d1_work
         type: photo_upload
         prompt: Upload 1–3 photos of your best visual work.
-        help: Clear, well-lit photos are enough. A phone camera is fine.
+        help: >-
+          Clear, well-lit photos are enough — a phone camera is fine. If you
+          have one, include a work-in-progress photo or rough sketch of the same
+          piece; it helps us see how you work, and you'll talk about it at
+          Stage 3.
         min_files: 1
         max_files: 3
         rubric_id: d1_best_work
         max_score: 4
         required: true
-        tags: [reflective, technical]
-      - id: d1_wip
-        type: photo_upload
-        prompt: Upload one work-in-progress photo or rough sketch of the same piece.
-        help: This helps us see your process. It doesn't need to look good.
-        min_files: 1
-        max_files: 1
-        scored: false
-        required: true
-        tags: [process, originality]
+        tags: [reflective, technical, process]
       - id: d1_reflect
         type: short_text
         prompt: What were you trying to do in this piece, and what would you change?
         word_limit: 80
         scored: false
         tags: [reflective]
+      - id: d1_portfolio
+        type: portfolio
+        prompt: Portfolio, if you have one.
+        help: >-
+          Optional. If you already keep your work somewhere — a Behance or
+          Instagram page, a Google Drive folder, a PDF — share it here. If you
+          don't have one, skip this: it is not scored and counts neither for
+          nor against you.
+        max_links: 3
+        max_files: 3
+        max_file_mb: 10
+        examples: [Behance, Instagram, a Google Drive folder, a PDF of your work]
+        scored: false
+        tags: [portfolio, stage3]
 
   - id: D2
     code: D2
@@ -75,15 +85,18 @@ sections:
 
   - id: D3
     code: D3
-    title: Visual Literacy & Gestalt
-    duration_min: 20
+    title: How People See & Choose
+    duration_min: 22
     weight: 14
-    traits: [Visual literacy]
-    summary: Twelve quick questions about how people see images, plus one poster to lay out.
+    traits: [Visual literacy, Design judgement]
+    summary: Fourteen quick questions about how people look, choose, and remember.
     intro: >-
-      Twelve questions about how we see: grouping, figure and ground, hierarchy,
-      colour. Most are multiple choice. The last one asks you to arrange a
-      poster. Trust your eyes.
+      Designers work with how people actually behave: what the eye lands on
+      first, how many choices someone can hold at once, what they can hit with
+      a thumb on a moving bus, and what they remember afterwards. You don't
+      need to know any theory or names — every question shows you something
+      ordinary and asks which version works better for a real person, and why.
+      Trust your eyes and your experience of using apps.
     items:
       - id: d3_closure
         type: mcq_single
@@ -96,6 +109,22 @@ sections:
           - { id: d, label: D, media: { kind: image, src: /media/bdes/logo-d.svg, alt: A striped triangle with a thick outline } }
         answer: c
         tags: [gestalt, closure, easy]
+
+      - id: d3_hicks
+        type: mcq_single
+        prompt: Two food apps show the same 61 dishes. A hungry customer opens each at 9 pm. Which one gets them to their food faster, and why?
+        media:
+          - kind: image
+            src: /media/bdes/d3/hicks.svg
+            alt: "App A shows 24 small identical dish tiles at once; app B shows six large categories — Breakfast, Thalis, Biryani, Chinese, Drinks, Desserts — each with a dish count"
+        options:
+          - { id: b_fewer, label: "B — fewer things to weigh up at each step, so each decision is quick" }
+          - { id: a_all, label: "A — everything is visible at once, so nothing is hidden" }
+          - { id: b_text, label: "B — because the text is bigger" }
+          - { id: a_choice, label: "A — more options on screen means more chance of finding something" }
+        answer: b_fewer
+        tags: [hicks-law, choice-architecture, medium]
+
       - id: d3_proximity
         type: mcq_single
         prompt: Why do you see three columns here, rather than rows?
@@ -108,30 +137,22 @@ sections:
           - { id: region, label: Common region — things inside a boundary look like a group }
         answer: proximity
         tags: [gestalt, proximity, easy]
-      - id: d3_similarity
+
+      - id: d3_fitts
         type: mcq_single
-        prompt: These dots are all evenly spaced. Why do you still see columns?
+        prompt: You're booking a ticket while standing in a moving bus. Which design will cause fewer mistakes, and why?
         media:
-          - { kind: image, src: /media/bdes/dots-similarity.svg, alt: An evenly spaced grid of dots where alternate columns are orange and dark grey }
+          - kind: image
+            src: /media/bdes/d3/fitts.svg
+            alt: "Screen A has three small buttons — Cancel, Change, Pay — crammed together near the top; screen B has one large Pay button at the bottom within thumb reach, with Cancel as a small text link far below it"
         options:
-          - { id: proximity, label: Proximity }
-          - { id: similarity, label: Similarity }
-          - { id: closure, label: Closure }
-          - { id: figure, label: Figure–ground }
-        answer: similarity
-        tags: [gestalt, similarity, easy]
-      - id: d3_figure_ground
-        type: mcq_single
-        prompt: What are the two images you can see in this composition?
-        media:
-          - { kind: image, src: /media/bdes/figure-ground.svg, alt: A black and white figure-ground illusion }
-        options:
-          - { id: a, label: "A vase, and two faces in profile looking at each other" }
-          - { id: b, label: "A candle, and two hands" }
-          - { id: c, label: "A tree, and a river" }
-          - { id: d, label: "A single face, seen from the front" }
-        answer: a
-        tags: [figure-ground, easy]
+          - { id: b_big, label: "B — the button you want is large and far from anything else, so it's hard to miss or mis-tap" }
+          - { id: a_together, label: "A — all the choices sit together, so you move your hand less" }
+          - { id: b_colour, label: "B — because it is a darker colour" }
+          - { id: a_top, label: "A — because buttons at the top of a screen are always easier to reach" }
+        answer: b_big
+        tags: [fitts-law, targets, medium]
+
       - id: d3_hierarchy
         type: mcq_single
         prompt: Two versions of the same event poster. Which communicates the date faster, and why?
@@ -145,6 +166,77 @@ sections:
           - { id: b2, label: "B — because all the information is the same size, so nothing is missed" }
         answer: a1
         tags: [hierarchy, medium]
+
+      - id: d3_miller
+        type: mcq_single
+        prompt: A delivery app shows your order number on screen. You have to read it out to someone on the phone. Which version is easiest to read out without losing your place?
+        options:
+          - { id: chunked, label: "OD 4821 7365 9014" }
+          - { id: run, label: "OD482173659014" }
+          - { id: dashless, label: "od482173659014" }
+          - { id: tail, label: "482173659014OD" }
+        answer: chunked
+        tags: [millers-law, chunking, easy]
+
+      - id: d3_figure_ground
+        type: mcq_single
+        prompt: What are the two images you can see in this composition?
+        media:
+          - { kind: image, src: /media/bdes/figure-ground.svg, alt: A black and white figure-ground illusion }
+        options:
+          - { id: a, label: "A vase, and two faces in profile looking at each other" }
+          - { id: b, label: "A candle, and two hands" }
+          - { id: c, label: "A tree, and a river" }
+          - { id: d, label: "A single face, seen from the front" }
+        answer: a
+        tags: [figure-ground, easy]
+
+      - id: d3_jakob
+        type: mcq_single
+        prompt: Both screens belong to the same online kirana shop. Most people opening it for the first time manage A faster. Why?
+        media:
+          - kind: image
+            src: /media/bdes/d3/jakob.svg
+            alt: "Screen A puts the shop name top-left, a search bar below it, a cart icon top-right and products in a plain grid; screen B arranges product cards in a rotated fan around a ••• button, with the shop name at the bottom"
+        options:
+          - { id: familiar, label: "Because it works the way the other shopping apps they already use work" }
+          - { id: colour, label: "Because A uses more colour" }
+          - { id: fewer, label: "Because B shows fewer products at a time" }
+          - { id: images, label: "Because A has larger product photos" }
+        answer: familiar
+        tags: [jakobs-law, convention, medium]
+
+      - id: d3_restorff
+        type: mcq_single
+        prompt: Your eye lands on the ₹499 plan before the others. What is doing that?
+        media:
+          - kind: image
+            src: /media/bdes/d3/restorff.svg
+            alt: "Five subscription cards in a row — ₹199, ₹299, ₹499, ₹699, ₹999. The ₹499 card is taller, filled dark red with white text and carries a yellow POPULAR badge; the rest are plain white"
+        options:
+          - { id: different, label: "It's the only one that looks different from the cards around it" }
+          - { id: cheapest, label: "It's the cheapest plan" }
+          - { id: middle, label: "It's exactly in the middle of the row" }
+          - { id: features, label: "It lists the most features" }
+        answer: different
+        tags: [von-restorff, isolation, medium]
+
+      - id: d3_peakend
+        type: mcq_single
+        prompt: >-
+          Two people order from the same restaurant. Riya's food arrives ten
+          minutes early, but at the door the rider argues about change and
+          leaves annoyed. Sameer's food is twenty minutes late — the app warned
+          him, apologised, and the rider hands over a free gulab jamun with a
+          note. Who is more likely to order from this restaurant again, and why?
+        options:
+          - { id: sameer_end, label: "Sameer — people judge an experience mostly by its strongest moment and how it ended" }
+          - { id: riya_fast, label: "Riya — arriving early is what matters most to customers" }
+          - { id: sameer_value, label: "Sameer — because a free sweet is worth more than twenty minutes" }
+          - { id: riya_late, label: "Riya — lateness is the only thing customers really judge" }
+        answer: sameer_end
+        tags: [peak-end, memory, hard]
+
       - id: d3_colourblind
         type: mcq_single
         prompt: Which palette would be *least* legible for a person with red–green colour blindness?
@@ -156,6 +248,7 @@ sections:
           - { id: p4, label: Palette 4, media: { kind: palette, colors: ["#561842", "#FFE5CD", "#104477", "#F2D5A0"] } }
         answer: p2
         tags: [colour, accessibility, medium]
+
       - id: d3_contrast
         type: mcq_single
         prompt: Which text-and-background pair would be hardest to read on a sunny street?
@@ -167,30 +260,7 @@ sections:
           - { id: d, label: White on red, media: { kind: palette, label: Aa, colors: ["#B20E38", "#FFFFFF"] } }
         answer: b
         tags: [colour, contrast, easy]
-      - id: d3_continuity
-        type: mcq_single
-        prompt: Most people see two smooth lines crossing, not four short lines meeting at a point. Which principle explains this?
-        media:
-          - { kind: image, src: /media/bdes/continuity.svg, alt: Two smooth curved lines crossing each other in an X shape }
-        options:
-          - { id: proximity, label: Proximity }
-          - { id: continuity, label: Continuity }
-          - { id: closure, label: Closure }
-          - { id: symmetry, label: Symmetry }
-        answer: continuity
-        tags: [gestalt, continuity, medium]
-      - id: d3_region
-        type: mcq_single
-        prompt: The dots are evenly spaced, yet you see pairs. What is doing the grouping?
-        media:
-          - { kind: image, src: /media/bdes/dots-region.svg, alt: A row of evenly spaced dots where pairs are enclosed in soft rounded rectangles }
-        options:
-          - { id: region, label: Common region — the shaded shapes around them }
-          - { id: similarity, label: Similarity — the dots look alike }
-          - { id: proximity, label: Proximity — the dots are closer in pairs }
-          - { id: continuity, label: Continuity — the dots form a line }
-        answer: region
-        tags: [gestalt, common-region, medium]
+
       - id: d3_icons
         type: mcq_single
         prompt: A delivery app needs a "home" icon that still reads at 16 pixels on a cheap phone. Which is the best starting point?
@@ -202,19 +272,7 @@ sections:
           - { id: d, label: D, media: { kind: image, src: /media/bdes/icon-d.svg, alt: The word HOME in a decorative script } }
         answer: b
         tags: [icons, legibility, medium]
-      - id: d3_menu
-        type: mcq_multi
-        prompt: A roadside dhaba's menu card is crowded and hard to scan. Which changes would help? Select all that apply.
-        partial: proportional
-        max_score: 2
-        options:
-          - { id: align, label: Line the prices up in one column on the right }
-          - { id: headings, label: "Group dishes under clear headings (Breakfast, Thalis, Drinks)" }
-          - { id: centre, label: Centre-align every line }
-          - { id: colours, label: Give every dish name a different colour }
-          - { id: weights, label: Use one typeface in two weights — bold for dish names }
-        answer: [align, headings, weights]
-        tags: [hierarchy, typography, medium]
+
       - id: d3_poster
         type: layout_drag
         prompt: Arrange a poster for a college fest so the date is noticed within 3 seconds.

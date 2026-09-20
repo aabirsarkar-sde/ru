@@ -251,6 +251,21 @@ sections:
           - { id: d, label: You can't compare schools of different sizes }
         answer: b
         tags: [percentages, easy]
+      - id: p2_framing
+        type: mcq_single
+        prompt: >-
+          A hospital leaflet describes the same operation in two ways. Version A
+          says "nine out of ten patients survive". Version B says "one in ten
+          patients dies". In studies, more people agree to the operation after
+          reading version A. What does this tell us?
+        options:
+          - { id: framing, label: "How information is worded changes people's decisions, even when the facts are identical" }
+          - { id: maths, label: "Most people cannot work out percentages" }
+          - { id: accurate, label: "Version A is more accurate than version B" }
+          - { id: short, label: "People prefer shorter sentences" }
+        answer: framing
+        tags: [framing, judgement, medium]
+
       - id: p2_week
         type: mcq_single
         prompt: A class recorded their average sleep across one week. What pattern does the chart show?

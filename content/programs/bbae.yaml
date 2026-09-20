@@ -118,6 +118,20 @@ sections:
           - { id: d, label: ₹450 }
         answer: b
         tags: [margin, hard]
+      - id: b1_decoy
+        type: mcq_single
+        prompt: >-
+          A cinema sells popcorn in two sizes: small ₹120 and large ₹250. Few
+          people buy the large. The manager adds a medium at ₹240 — and sales of
+          the *large* go up sharply. Why?
+        options:
+          - { id: compare, label: "Next to a ₹240 medium, the ₹250 large suddenly looks like far better value" }
+          - { id: biggest, label: "People always buy the biggest size available" }
+          - { id: unpopular, label: "Because the medium tastes better than the small" }
+          - { id: average, label: "Because the average price on the menu went up" }
+        answer: compare
+        tags: [pricing, judgement, medium]
+
       - id: b1_mix
         type: mcq_single
         prompt: A stall sells 60 cups of chai at ₹20 and 40 cups of coffee at ₹40. What is the average price per cup?

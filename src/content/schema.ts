@@ -165,6 +165,16 @@ export const Item = z.discriminatedUnion("type", [
       .default([]),
   }),
   ItemBase.extend({
+    /** Optional portfolio: links and/or uploaded PDFs & images. */
+    type: z.literal("portfolio"),
+    max_links: z.number().default(3),
+    max_files: z.number().default(3),
+    max_file_mb: z.number().default(10),
+    link_placeholder: z.string().default("https://…"),
+    /** Suggestions shown under the link box (Behance, Drive, Instagram…). */
+    examples: z.array(z.string()).default([]),
+  }),
+  ItemBase.extend({
     /** Split a fixed budget (hours, rupees, points) across options. */
     type: z.literal("allocation"),
     total: z.number(),

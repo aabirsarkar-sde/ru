@@ -29,7 +29,7 @@ Then pick a programme on the home page. Useful while reviewing:
 
 | Programme | Sections | Highlights |
 |---|---|---|
-| B.Design | D1–D5 | **D2 Design for People** — a persona (Kamla-ji, 68, on a grocery app; or Farida, one-handed with a toddler, on a food app): pin-and-annotate where they get stuck, spot designs that work against them, rank fixes for *them*, a says/thinks/feels/does map (including the delivery rider's side), a phone-frame redesign sketch, and the app message they should see. Plus a pressure-sensitive drawing canvas with a draw-on-paper + phone photo alternative, gestalt/visual-literacy items, a poster layout board, and a design brief with 3-thumbnail guides |
+| B.Design | D1–D5 | **D1 Best Work** — photos of their strongest piece, a short reflection, then an optional **portfolio** (links and/or PDF/image uploads). **D2 Design for People** — a persona (Kamla-ji, 68, on a grocery app; or Farida, one-handed with a toddler, on a food app): pin-and-annotate where they get stuck, spot designs that work against them, rank fixes for *them*, a says/thinks/feels/does map (including the delivery rider's side), a phone-frame redesign sketch, and the app message they should see. Plus a pressure-sensitive drawing canvas with a draw-on-paper + phone photo alternative, gestalt/visual-literacy items, a poster layout board, and a design brief with 3-thumbnail guides. **D3 How People See & Choose** covers gestalt *and* choice/attention/memory effects (Hick, Fitts, Jakob, Miller, Von Restorff, peak–end) — always as "which version works better for this person, and why", never by name |
 | B.Psych | P1–P6 | Split-screen research passage; accessible SVG charts incl. a deliberately truncated axis; Stroop task with the candidate's own results (never scored); wordless comic strip; drag-to-rank situational judgement |
 | **All three** | **C1 Contribution** (shared) | One common section, defined once in `content/common/contribution.yaml`: Part 1 — a specific problem in India they care about, what they've actually done about it, and one working day a month ten years from now; Part 2 — how they'd spend five free hours a week (allocation sliders), what they'd do in a club/fest/clan in their first 90 days, and two situational-judgement rankings on following through and including people |
 | BBA-E | B1–B5 | Numeracy with rough-work pad; 3 business cases (pooled); **Mela Market** — sealed-bid stall auction on an illustrated mela map, 4 festival days with news events, product/stock/price/promotion decisions, a mid-game water-rights auction, and decision-quality scoring |
@@ -51,6 +51,7 @@ content/games/mela-market.yaml                         demand model, events, bot
 content/games/stroop.yaml                              colours, trials, timing
 public/media/**                                        images referenced by the YAML
 scripts/gen-ux-screens.py                              regenerates the made-up D2 app screens
+scripts/gen-d3-figures.py                              regenerates the D3 A/B comparison figures
 ```
 
 After editing, run the validator (the v1 "seed" step) — it checks the schema, answer keys,

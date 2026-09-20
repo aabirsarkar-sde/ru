@@ -300,6 +300,38 @@ function ResponseView({ item, response, games, program, cohort }: Parameters<typ
         </div>
       );
     }
+    case "portfolio": {
+      const links = response.links.filter((l) => l.trim());
+      if (!links.length && !response.files.length) return <p className="italic text-ink-mute">No portfolio submitted.</p>;
+      return (
+        <details className="rounded-xl bg-paper p-4 text-sm">
+          <summary className="cursor-pointer font-semibold">
+            Portfolio · {links.length} link{links.length === 1 ? "" : "s"}, {response.files.length} file
+            {response.files.length === 1 ? "" : "s"} — click to open
+          </summary>
+          <p className="mt-2 text-xs text-ink-mute">
+            Not scored, and hidden by default: a portfolio link usually shows the candidate&apos;s name. For the Stage 3
+            conversation, not for blind rating.
+          </p>
+          <ul className="mt-3 grid gap-1.5">
+            {links.map((l) => (
+              <li key={l}>
+                <a href={l.startsWith("http") ? l : `https://${l}`} target="_blank" rel="noreferrer noopener" className="text-blue underline">
+                  🔗 {l}
+                </a>
+              </li>
+            ))}
+            {response.files.map((f) => (
+              <li key={f.id}>
+                <a href={f.dataUrl} download={f.name} className="text-blue underline">
+                  {f.type === "application/pdf" ? "📄" : "🖼"} {f.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      );
+    }
     case "allocation": {
       if (item.type !== "allocation") return null;
       const total = Object.values(response.allocations).reduce((a, b) => a + b, 0) || 1;
