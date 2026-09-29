@@ -232,3 +232,21 @@ test("Phone handoff: a photo taken on a phone appears in the desktop test", asyn
   await expect(page.getByText("1 received from phone")).toBeVisible({ timeout: 10_000 });
   await expect(page.getByText("1/3 uploaded ✓")).toBeVisible();
 });
+
+test("Handoff API: DELETE rejects an invalid token and still consumes a valid one", async ({ request }) => {
+  // The token is the only access control on the handoff store, so DELETE must
+  // validate it exactly like GET and POST do.
+  const bad = await request.delete("/api/handoff/x?id=photo-1");
+  expect(bad.status()).toBe(400);
+  expect(await bad.json()).toEqual({ error: "bad token" });
+
+  const token = "hvalidtoken123";
+  const photo = { id: "photo-1", dataUrl: "data:image/png;base64,iVBORw0KGgo=", via: "phone", at: Date.now() };
+  expect((await request.post(`/api/handoff/${token}`, { data: { photo } })).status()).toBe(200);
+  expect((await (await request.get(`/api/handoff/${token}`)).json()).photos).toHaveLength(1);
+
+  const del = await request.delete(`/api/handoff/${token}?id=photo-1`);
+  expect(del.status()).toBe(200);
+  expect(await del.json()).toEqual({ ok: true });
+  expect((await (await request.get(`/api/handoff/${token}`)).json()).photos).toHaveLength(0);
+});
