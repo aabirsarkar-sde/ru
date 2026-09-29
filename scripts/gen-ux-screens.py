@@ -37,7 +37,7 @@ b += '<rect x="16" y="136" width="328" height="128" rx="14" fill="url(#fest)"/>'
 b += text(32, 170, "DIWALI DHAMAKA", 20, "#FFFFFF", 800) + text(32, 196, "UP TO 70% OFF", 26, "#FFE14D", 900) + text(32, 218, "on sweets, dry fruits & gifts*", 10, "#FFFFFF")
 b += '<rect x="32" y="230" width="84" height="22" rx="11" fill="#FFFFFF"/>' + text(74, 245, "Shop now", 10, "#8E2DE2", 700, "middle")
 for i, cx in enumerate([270, 300, 320]):
-    b += f'<circle cx="{250+i*14}" cy="252" r="3.5" fill="{"#FFFFFF" if i == 0 else "#FFFFFF88"}"/>'
+    b += f'<circle cx="{cx}" cy="252" r="3.5" fill="{"#FFFFFF" if i == 0 else "#FFFFFF88"}"/>'
 b += '<g fill="#FFD166"><circle cx="300" cy="170" r="16"/><path d="M300 150 q6 10 0 16 q-6 -6 0 -16z" fill="#FFF3B0"/></g>'
 zone("jaldi-home", "banner", "Big festive banner takes the prime space", 16, 136, 328, 128)
 # category icons — no labels
