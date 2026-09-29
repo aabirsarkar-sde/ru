@@ -25,6 +25,7 @@ export async function POST(req: Request, ctx: RouteContext<"/api/handoff/[token]
 
 export async function DELETE(req: Request, ctx: RouteContext<"/api/handoff/[token]">) {
   const { token } = await ctx.params;
+  if (!valid(token)) return NextResponse.json({ error: "bad token" }, { status: 400 });
   const ids = new URL(req.url).searchParams.getAll("id");
   takePhotos(token, ids);
   return NextResponse.json({ ok: true });
