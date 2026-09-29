@@ -28,11 +28,24 @@ function strayKeys(node: unknown, at: string, out: string[]) {
     }
 }
 for (const dir of ["programs", "games", "common", "."]) {
-  for (const f of fs.readdirSync(path.join("content", dir)).filter((x) => x.endsWith(".yaml"))) {
+  const abs = path.join("content", dir);
+  const label = dir === "." ? "content" : `content/${dir}`;
+  if (!fs.existsSync(abs)) {
+    warn(`${label} is missing`);
+    continue;
+  }
+  for (const f of fs.readdirSync(abs).filter((x) => x.endsWith(".yaml"))) {
     const found: string[] = [];
     strayKeys(YAML.parse(fs.readFileSync(path.join("content", dir, f), "utf8")), f, found);
     found.forEach(warn);
   }
+}
+
+// A missing content directory makes the load/build step below fail with an
+// opaque ENOENT; report the problem summary now instead of crashing.
+if (problems) {
+  console.log(`\n${problems} problem(s) found.`);
+  process.exit(1);
 }
 
 try {
@@ -80,3 +93,4 @@ if (problems) {
   process.exit(1);
 }
 console.log("\nAll content is valid.");
+process.exit(0);
